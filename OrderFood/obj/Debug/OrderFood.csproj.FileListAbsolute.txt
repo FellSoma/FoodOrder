@@ -1,0 +1,87 @@
+D:\VS Progect\OrderFood\OrderFood\bin\Debug\OrderFood.exe.config
+D:\VS Progect\OrderFood\OrderFood\bin\Debug\OrderFood.exe
+D:\VS Progect\OrderFood\OrderFood\bin\Debug\OrderFood.pdb
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.AssemblyReference.cache
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.SuggestedBindingRedirects.cache
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\MainWindow.g.cs
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\App.g.cs
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.cache
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.lref
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\MainWindow.baml
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.g.resources
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.Properties.Resources.resources
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.GenerateResource.cache
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CoreCompileInputs.cache
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.exe
+D:\VS Progect\OrderFood\OrderFood\obj\Debug\OrderFood.pdb
+D:\КП по ТРПО\OrderFood\OrderFood\bin\Debug\OrderFood.exe.config
+D:\КП по ТРПО\OrderFood\OrderFood\bin\Debug\OrderFood.exe
+D:\КП по ТРПО\OrderFood\OrderFood\bin\Debug\OrderFood.pdb
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.AssemblyReference.cache
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.SuggestedBindingRedirects.cache
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\MainWindow.g.cs
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\App.g.cs
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.cache
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.lref
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\MainWindow.baml
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.g.resources
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.Properties.Resources.resources
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.GenerateResource.cache
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CoreCompileInputs.cache
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.exe
+D:\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.pdb
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\OrderFood.exe.config
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\OrderFood.exe
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\OrderFood.pdb
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.AssemblyReference.cache
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\MainWindow.g.cs
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\App.g.cs
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.cache
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.lref
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\MainWindow.baml
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.g.resources
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.Properties.Resources.resources
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.GenerateResource.cache
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CoreCompileInputs.cache
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.exe
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.pdb
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\SiningWindow.g.cs
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\SiningWindow.baml
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\EntityFramework.dll
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\EntityFramework.SqlServer.dll
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\EntityFramework.xml
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\EntityFramework.SqlServer.xml
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\bin\Debug\ru\EntityFramework.resources.dll
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood_Content.g.cs
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CopyComplete
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\NewDish.g.cs
+H:\Рабочий стол\КУРСОВОЙ\КП по ТРПО\OrderFood\OrderFood\obj\Debug\NewDish.baml
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\OrderFood.exe.config
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\OrderFood.exe
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\OrderFood.pdb
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\EntityFramework.dll
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\EntityFramework.xml
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fell\Desktop\OrderFood\OrderFood\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.AssemblyReference.cache
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.SuggestedBindingRedirects.cache
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\MainWindow.g.cs
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\NewDish.g.cs
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\SiningWindow.g.cs
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\App.g.cs
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood_Content.g.cs
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.cache
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood_MarkupCompile.lref
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\MainWindow.baml
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\NewDish.baml
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\SiningWindow.baml
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.g.resources
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.Properties.Resources.resources
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.GenerateResource.cache
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CoreCompileInputs.cache
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CopyComplete
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.exe
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\OrderFood.pdb
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\Order.g.cs
+C:\Users\Fell\Desktop\OrderFood\OrderFood\obj\Debug\Order.baml

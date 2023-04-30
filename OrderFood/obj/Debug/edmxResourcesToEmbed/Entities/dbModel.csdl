@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoodOrderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dish">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DishesOfIngredients" Relationship="Self.FK_DishesOfIngredients_Dishes" FromRole="Dishes" ToRole="DishesOfIngredients" />
+    <NavigationProperty Name="DishesOfMenus" Relationship="Self.FK_DishesOfMenu_Dishes" FromRole="Dishes" ToRole="DishesOfMenu" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Dishes" FromRole="Dishes" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="DishesOfIngredient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Dishes" Type="Int32" Nullable="false" />
+    <Property Name="id_ingridient" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dish" Relationship="Self.FK_DishesOfIngredients_Dishes" FromRole="DishesOfIngredients" ToRole="Dishes" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_DishesOfIngredients_Products" FromRole="DishesOfIngredients" ToRole="Products" />
+    <Property Name="weigth" Type="Double" />
+  </EntityType>
+  <EntityType Name="DishesOfMenu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Menu" Type="Int32" Nullable="false" />
+    <Property Name="id_Dishes" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dish" Relationship="Self.FK_DishesOfMenu_Dishes" FromRole="DishesOfMenu" ToRole="Dishes" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_DishesOfMenu_Menu" FromRole="DishesOfMenu" ToRole="Menu" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DishesOfMenus" Relationship="Self.FK_DishesOfMenu_Menu" FromRole="Menu" ToRole="DishesOfMenu" />
+    <NavigationProperty Name="OrganizationsOfMenus" Relationship="Self.FK_OrganizationsOfMenu_Menu" FromRole="Menu" ToRole="OrganizationsOfMenu" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_Dish" Type="Int32" Nullable="false" />
+    <Property Name="Prise" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Dish" Relationship="Self.FK_Orders_Dishes" FromRole="Orders" ToRole="Dishes" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_User" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Organizations_Users" FromRole="Organizations" ToRole="Users" />
+    <NavigationProperty Name="OrganizationsOfMenus" Relationship="Self.FK_OrganizationsOfMenu_Organizations" FromRole="Organizations" ToRole="OrganizationsOfMenu" />
+  </EntityType>
+  <EntityType Name="OrganizationsOfMenu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Organization" Type="Int32" Nullable="false" />
+    <Property Name="id_Menu" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_OrganizationsOfMenu_Menu" FromRole="OrganizationsOfMenu" ToRole="Menu" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_OrganizationsOfMenu_Organizations" FromRole="OrganizationsOfMenu" ToRole="Organizations" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Weight" Type="Double" Nullable="false" />
+    <Property Name="id_Unit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DishesOfIngredients" Relationship="Self.FK_DishesOfIngredients_Products" FromRole="Products" ToRole="DishesOfIngredients" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_Products_Units" FromRole="Products" ToRole="Units" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Units" FromRole="Units" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Organizations" Relationship="Self.FK_Organizations_Users" FromRole="Users" ToRole="Organizations" />
+  </EntityType>
+  <Association Name="FK_DishesOfIngredients_Dishes">
+    <End Role="Dishes" Type="Self.Dish" Multiplicity="1" />
+    <End Role="DishesOfIngredients" Type="Self.DishesOfIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dishes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DishesOfIngredients">
+        <PropertyRef Name="id_Dishes" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishesOfMenu_Dishes">
+    <End Role="Dishes" Type="Self.Dish" Multiplicity="1" />
+    <End Role="DishesOfMenu" Type="Self.DishesOfMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dishes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DishesOfMenu">
+        <PropertyRef Name="id_Dishes" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Dishes">
+    <End Role="Dishes" Type="Self.Dish" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dishes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="id_Dish" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishesOfIngredients_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="DishesOfIngredients" Type="Self.DishesOfIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DishesOfIngredients">
+        <PropertyRef Name="id_ingridient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishesOfMenu_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="DishesOfMenu" Type="Self.DishesOfMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DishesOfMenu">
+        <PropertyRef Name="id_Menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationsOfMenu_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="OrganizationsOfMenu" Type="Self.OrganizationsOfMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrganizationsOfMenu">
+        <PropertyRef Name="id_Menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizations_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Organizations">
+        <PropertyRef Name="id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationsOfMenu_Organizations">
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="1" />
+    <End Role="OrganizationsOfMenu" Type="Self.OrganizationsOfMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizations">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrganizationsOfMenu">
+        <PropertyRef Name="id_Organization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Units">
+    <End Role="Units" Type="Self.Unit" Multiplicity="1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Units">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="id_Unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FoodOrderEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dishes" EntityType="Self.Dish" />
+    <EntitySet Name="DishesOfIngredients" EntityType="Self.DishesOfIngredient" />
+    <EntitySet Name="DishesOfMenus" EntityType="Self.DishesOfMenu" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="OrganizationsOfMenus" EntityType="Self.OrganizationsOfMenu" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_DishesOfIngredients_Dishes" Association="Self.FK_DishesOfIngredients_Dishes">
+      <End Role="Dishes" EntitySet="Dishes" />
+      <End Role="DishesOfIngredients" EntitySet="DishesOfIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishesOfMenu_Dishes" Association="Self.FK_DishesOfMenu_Dishes">
+      <End Role="Dishes" EntitySet="Dishes" />
+      <End Role="DishesOfMenu" EntitySet="DishesOfMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Dishes" Association="Self.FK_Orders_Dishes">
+      <End Role="Dishes" EntitySet="Dishes" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishesOfIngredients_Products" Association="Self.FK_DishesOfIngredients_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="DishesOfIngredients" EntitySet="DishesOfIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishesOfMenu_Menu" Association="Self.FK_DishesOfMenu_Menu">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="DishesOfMenu" EntitySet="DishesOfMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationsOfMenu_Menu" Association="Self.FK_OrganizationsOfMenu_Menu">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="OrganizationsOfMenu" EntitySet="OrganizationsOfMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizations_Users" Association="Self.FK_Organizations_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Organizations" EntitySet="Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationsOfMenu_Organizations" Association="Self.FK_OrganizationsOfMenu_Organizations">
+      <End Role="Organizations" EntitySet="Organizations" />
+      <End Role="OrganizationsOfMenu" EntitySet="OrganizationsOfMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Units" Association="Self.FK_Products_Units">
+      <End Role="Units" EntitySet="Units" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
