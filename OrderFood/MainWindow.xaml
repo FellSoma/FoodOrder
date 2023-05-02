@@ -38,6 +38,7 @@
                     Width="100"
                     Height="26"
                     Margin="10,10,10,8"
+                    Click="Edit_Click"
                     x:Name="Edit"
                     Content="Рдактировать"/>
 

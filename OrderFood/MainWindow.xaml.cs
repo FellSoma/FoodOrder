@@ -249,5 +249,13 @@ namespace OrderFood
             // остальные символы запрещены
             e.Handled = true;
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2();
+            string nameDish = DataGridOrder.SelectedItem.ToString().Substring(9, DataGridOrder.SelectedItem.ToString().Length - 11);
+            var selectDish =  context.Dishes.Where(b=> b.Name == nameDish).FirstOrDefault();
+            new EditDishWindow(selectDish).ShowDialog();
+        }
     }
 }
