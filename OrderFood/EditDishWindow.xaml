@@ -31,11 +31,14 @@
         <ComboBox
             Grid.Row="2"
             Grid.Column="1"
+            SelectedItem="{Binding Menu}"
+            IsEnabled="False"
             DisplayMemberPath="Name"
             x:Name="MenuName"
             Margin="10,5,10,5"/>
 
         <StackPanel 
+            IsEnabled="False"
             Orientation="Horizontal"
             Margin="10"
             Grid.ColumnSpan="3"

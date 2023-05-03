@@ -255,7 +255,13 @@ namespace OrderFood
             Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2();
             string nameDish = DataGridOrder.SelectedItem.ToString().Substring(9, DataGridOrder.SelectedItem.ToString().Length - 11);
             var selectDish =  context.Dishes.Where(b=> b.Name == nameDish).FirstOrDefault();
-            new EditDishWindow(selectDish).ShowDialog();
+
+            //  string nameMenu = MenuBx.SelectedItem.ToString();
+
+            string NameMenu = MenuBx.SelectedItem.ToString().Substring(9, MenuBx.SelectedItem.ToString().Length - 11);
+            var selectMenu = context.Menus.Where(b => b.Name == NameMenu).FirstOrDefault();
+
+            new EditDishWindow(selectDish, selectMenu).ShowDialog();
         }
     }
 }

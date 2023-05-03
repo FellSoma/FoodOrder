@@ -26,11 +26,29 @@ namespace OrderFood
         int i;
         string[] ingridientsArray;
         FoodOrderEntities2 db = new FoodOrderEntities2();
-        public EditDishWindow(Entities.Dish selectDish)
+        public EditDishWindow(Entities.Dish selectetDish, Entities.Menu selectedMenu)
         {
             InitializeComponent();
+
+            //Заполнение Меню
+            Entities.FoodOrderEntities2 contextMenu = new Entities.FoodOrderEntities2();
+            var currentMenu = contextMenu.DishesOfMenus.Where(b=> b.id_Dishes.Equals(selectetDish.DishesOfMenus));
+            int indexMenu = 0;
             MenuName.ItemsSource = db.Menus.ToList();
-            DataContext = selectDish;
+            foreach (var item in MenuName.Items)
+            {
+                var itemMenu = item;
+                if (item == selectedMenu)
+                {
+                    MenuName.SelectedIndex = indexMenu;
+                    return;
+                }
+                indexMenu++;
+            }
+            MenuName.SelectedItem = selectedMenu;
+
+
+            DataContext = selectetDish;
             i = 0;
             massTextBoxs[0] = bxWeight;
             massComboBoxs[0] = cbIngridient;
