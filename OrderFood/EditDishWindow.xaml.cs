@@ -35,7 +35,9 @@ namespace OrderFood
             var currentMenu = contextMenu.DishesOfMenus.Where(b=> b.id_Dishes.Equals(selectetDish.DishesOfMenus));
             int indexMenu = 0;
             MenuName.ItemsSource = db.Menus.ToList();
-            foreach (var item in MenuName.Items)
+            //попробуй сравнить id  selectedMenu и id элемента MenuName(Combobox),
+            //если они совпадают поставь элемент по индексу равному indexMenu
+            foreach (var item in MenuName.ItemsSource)
             {
                 var itemMenu = item;
                 if (item == selectedMenu)
