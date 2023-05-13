@@ -20,12 +20,35 @@ namespace OrderFood
         public NewDish()
         {
             InitializeComponent();
-            MenuName.ItemsSource = db.Menus.ToList();
             i = 0;
             massTextBoxs[0] = bxWeight;
             massComboBoxs[0] = cbIngridient;
             cbIngridient.ItemsSource = db.Products.ToList();
+            MenuCompletion();
+        }
+        CheckBox[] massCheckBox = new CheckBox[100];
 
+        int indexNameCheckBox = 0;
+        public void MenuCompletion()
+        {
+            foreach (var item in db.Menus)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Name = "cbService" + indexNameCheckBox;
+                indexNameCheckBox++;
+                checkBox.Content = item.Name;
+                checkBox.Margin = new Thickness(10, 0, 10, 5);
+                massCheckBox[indexNameCheckBox - 1] = checkBox;
+                if (indexNameCheckBox < 6)
+                    MenuPanelLeft.Children.Add(checkBox);
+                else if (indexNameCheckBox > 6 && indexNameCheckBox < 12)
+                    MenuPanelMidlle.Children.Add(checkBox);
+                else if (indexNameCheckBox > 12 && indexNameCheckBox < 18)
+                    MenuPanelRight.Children.Add(checkBox);
+
+
+
+            }
         }
 
         private void Back(object sender, RoutedEventArgs e)
@@ -35,19 +58,19 @@ namespace OrderFood
 
         private void addDish(object sender, RoutedEventArgs e)
         {
-            if(massTextBoxs[0].Text == "" || massTextBoxs[0].Text == "0" || massComboBoxs[0].Text == "")
+            if (massTextBoxs[0].Text == "" || massTextBoxs[0].Text == "0" || massComboBoxs[0].Text == "")
             {
                 MessageBox.Show("Заполните массу ингридиентов \nУкажите все ингридиенты");
                 return;
             }
-            for (int i = 0; i < indexNameComboBoxs; i++)
-            { 
+            for (int i = 0; i < indexNameComboBoxs - 1; i++)
+            {
                 if (massComboBoxs[i].Text == massComboBoxs[++i].Text || massComboBoxs[i].Text == "")
                 {
                     MessageBox.Show("Уберите повторяющиеся ингридиены");
                     return;
                 }
-            
+
             }
             for (int i = 0; i < indexNameComboBoxs; i++)
             {
@@ -59,8 +82,8 @@ namespace OrderFood
                 string word = massTextBoxs[i].Text;
                 for (int j = 0; j < word.Length; j++)
                 {
-                    if (word[j] == '!' || word[j] == '@' || word[j] == '#' || word[j] == '$' 
-                        || word[j] == '%' || word[j] == '^' || word[j] == '&' 
+                    if (word[j] == '!' || word[j] == '@' || word[j] == '#' || word[j] == '$'
+                        || word[j] == '%' || word[j] == '^' || word[j] == '&'
                         || word[j] == '*' || word[j] == '(' || word[j] == ')')
                     {
                         MessageBox.Show("Уберите лишние символы");
@@ -69,13 +92,20 @@ namespace OrderFood
                 }
 
             }
-            if (nameDish.Text != "" && MenuName.SelectedItem != null)
+            bool MenuChecked = false;
+            for (int i = 0; i < indexNameCheckBox; i++)
+            {
+                if ((bool)massCheckBox[i].IsChecked)
+                {
+                    MenuChecked = true;
+                }
+            }
+            if (nameDish.Text != "" && MenuChecked == true)
             {
                 Entities.Dish dish = new Entities.Dish()
                 {
                     Name = nameDish.Text
                 };
-
                 Entities.Dish authDish = null;
                 Entities.Product authIngridient = null;
                 Entities.Menu authMenu = null;
@@ -98,23 +128,28 @@ namespace OrderFood
                     }
 
                     authDish = context.Dishes.Where(b => b.Name == nameDish.Text).FirstOrDefault();
+
+
+                    for (int i = 0; i < indexNameCheckBox; i++)
+                    {
+                        if ((bool)massCheckBox[i].IsChecked)
+                        {
+                            string currentNameMenu = (string)massCheckBox[i].Content;
+                            authMenu = context.Menus.Where(b => b.Name == currentNameMenu).FirstOrDefault();
+                            DishesOfMenu dishesOfMenu = new DishesOfMenu();
+                            dishesOfMenu.id_Menu = authMenu.id;
+                            dishesOfMenu.id_Dishes = authDish.id;
+                            context.DishesOfMenus.Add(dishesOfMenu);
+                            context.SaveChanges();
+                        }
+                    }
                     if (authDish != null)
                     {
                         for (int i = 0; i < indexNameComboBoxs; i++)//проверь на макс элементов в  цикле, селай если, перед добовлением есть пустые столбцы спроси нужно 
                         {
-                            authMenu = context.Menus.Where(b => b.Name == MenuName.Text.Trim()).FirstOrDefault();
-                            if (authMenu != null)
-                            {
-                                DishesOfMenu dishesOfMenu = new DishesOfMenu();
-                                dishesOfMenu.id_Menu = authMenu.id;
-                                dishesOfMenu.id_Dishes = authDish.id;
-                                context.DishesOfMenus.Add(dishesOfMenu);
-                                context.SaveChanges();
-                            }
 
                             if (massComboBoxs[i] != null)
                             {
-
                                 var nowText = massComboBoxs[i].Text;
                                 authIngridient = context.Products.Where(b => b.Name == nowText).FirstOrDefault();
                                 if (authIngridient != null)
@@ -127,7 +162,6 @@ namespace OrderFood
                                     context.DishesOfIngredients.Add(dishesOfIngredient);
                                     context.SaveChanges();
                                 }
-
                             }
                         }
                         MessageBox.Show("Блюдо добавлено");
@@ -198,7 +232,7 @@ namespace OrderFood
         }
         private void Count_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-           
+
             if ((e.Key == Key.D0) || (e.Key == Key.D1) || (e.Key == Key.D2) || (e.Key == Key.D3) || (e.Key == Key.D4)
               || (e.Key == Key.D5) || (e.Key == Key.D6) || (e.Key == Key.D7) || (e.Key == Key.D8) || (e.Key == Key.D9)
               || (e.Key == Key.Decimal))

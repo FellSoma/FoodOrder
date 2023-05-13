@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrderFood"
         mc:Ignorable="d"
-        Title="Добовление" Height="450" Width="500"
+        Title="Добовление" Height="650" Width="500"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,29 +14,50 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="274*"/>
-            <RowDefinition Height="35*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="148*"/>
+            <RowDefinition Height="353*"/>
+            <RowDefinition Height="58*"/>
         </Grid.RowDefinitions>
         <TextBox
             Grid.Row="1"
             x:Name="nameDish"
             VerticalContentAlignment="Center"
             Grid.Column="1"
-            Margin="10,6,10,6"/>
+            Margin="10,6,10,6"/>  
 
-        <ComboBox
+
+        <StackPanel
+            Orientation="Vertical"
+            Margin="10,10,10,10"
+            Grid.Column="0"
             Grid.Row="2"
+            x:Name="MenuPanelLeft">
+
+        </StackPanel>
+
+        <StackPanel
+            Orientation="Vertical"
+            Margin="10,10,10,10"
             Grid.Column="1"
-            DisplayMemberPath="Name"
-            x:Name="MenuName"
-            Margin="10,5,10,5"/>
+            Grid.Row="2"
+            x:Name="MenuPanelMidlle">
+
+        </StackPanel>
+
+        <StackPanel
+            Orientation="Vertical"
+            Margin="10,10,10,10"
+            Grid.Column="2"
+            Grid.Row="2"
+            x:Name="MenuPanelRight">
+
+        </StackPanel>
 
         <StackPanel 
             Orientation="Horizontal"
-            Margin="10"
+            Margin="10,10,10,10"
             Grid.ColumnSpan="3"
             Grid.Row="3"
             x:Name="ourPanel">
@@ -76,14 +97,13 @@
                 FontSize="15"
                 Width="30"/>
         </StackPanel>
-        
-        
+
+
 
         <StackPanel 
             Orientation="Horizontal"
             Grid.Row="4"
-            Grid.ColumnSpan="2"
-            Grid.Column="1">
+            Grid.ColumnSpan="3" Margin="156,16,0,0">
 
             <Button 
                 Click="Back"
