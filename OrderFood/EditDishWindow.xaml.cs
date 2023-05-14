@@ -298,11 +298,5 @@ namespace OrderFood
             // остальные символы запрещены
             e.Handled = true;
         }
-
-        private void zxc(object sender, RoutedEventArgs e)
-        {
-            
-            
-        }
     }
 }

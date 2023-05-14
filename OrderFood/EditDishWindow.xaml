@@ -21,10 +21,7 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
 
-        <Button
-            Click="zxc"
-            Grid.Row="1"
-            Content="Изменить имя"/>
+        
         <TextBox
             Grid.Row="1"
             x:Name="nameDish"

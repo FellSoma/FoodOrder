@@ -116,3 +116,6 @@ D:\Gits\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CoreCompileInputs.cache
 D:\Gits\OrderFood\OrderFood\obj\Debug\OrderFood.csproj.CopyComplete
 D:\Gits\OrderFood\OrderFood\obj\Debug\OrderFood.exe
 D:\Gits\OrderFood\OrderFood\obj\Debug\OrderFood.pdb
+D:\Gits\OrderFood\OrderFood\obj\Debug\Themes\GrayButton.baml
+D:\Gits\OrderFood\OrderFood\obj\Debug\App.baml
+D:\Gits\OrderFood\OrderFood\obj\Debug\Themes\ExitButton.baml

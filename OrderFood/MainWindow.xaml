@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
-        Title="Главная" Height="490" Width="820">
+        Title="Главная" Height="490" Width="890">
     <Grid Background="#FFEAEAEA"  >
 
         <Grid Background="Transparent">
@@ -28,23 +28,23 @@
 
                 <Button 
                     Width="100"
-                    Height="26"
+                    Style="{StaticResource GrayButton}"
                     Margin="24,10,10,8"
                     x:Name="Add"
                     Click="AddNewDish"
                     Content="Добавить"/>
 
                 <Button 
-                    Width="100"
-                    Height="26"
+                    Style="{StaticResource GrayButton}"
+                    Width="120"
                     Margin="10,10,10,8"
                     Click="Edit_Click"
                     x:Name="Edit"
                     Content="Рдактировать"/>
 
                 <Button 
+                    Style="{StaticResource GrayButton}"
                     Width="100"
-                    Height="26"
                     Margin="10,10,10,8"
                     x:Name="Delete"
                     Click="DeleteDish"
@@ -54,17 +54,19 @@
                     Name="MenuBx"
                     SelectionChanged="CangeMenu"
                     DisplayMemberPath="Name"
-                    Width="100"
+                    Width="120"
                     Margin="10,10,10,8"
                     Height="26"/>
 
                 <Button 
+                    Style="{StaticResource ExitButton}"
                     Width="100"
                     Height="26"
                     Margin="70,10,0,8"
                     HorizontalAlignment="Right"
                     x:Name="Back"
-                    Content="Выйти" Click="Exit"/>
+                    Content="Выйти"
+                    Click="Exit"/>
 
                 <Button 
                     Width="100"
@@ -112,7 +114,7 @@
                     Margin="20,30,20,0"/>
 
                 <StackPanel Orientation="Horizontal"
-                            Margin="20,20,20,0">
+                            Margin="5,20,20,0">
                     <TextBlock Text="Кол-во"
                                Margin="00,10,0,0"
                                Height="26"
@@ -125,20 +127,27 @@
                         VerticalContentAlignment="Center"
                         Margin="10,0,0,0"/>
                     <Button
-                        Content="Добавить" x:Name="addBtn" Margin="10,6,0,6"
+                        Style="{StaticResource GrayButton}"
+                        Width="90"
+                        Content="Добавить"
+                        x:Name="addBtn" 
+                        Margin="10,6,0,6"
                         Click="addToOrder"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
-                            Margin="20,20,20,0">
+                            Margin="5,20,20,0">
                     <Button
+                        Style="{StaticResource GrayButton}"
                         Content="❰"
-                        Width="20" Margin="0,0,10,0"
+                        Width="20" 
+                        Margin="0,0,10,0"
                         Click="PreviewBack"/>
                     
                     <Button
-                    Height="26"
-                    VerticalContentAlignment="Center"
-                    Content="Предварительный просмотр" Click="Preview"/>
+                        Style="{StaticResource GrayButton}"
+                        FontSize="17"
+                        Content="Просмотр" 
+                        Click="Preview"/>
                     
                 </StackPanel>
             </StackPanel>
