@@ -262,6 +262,8 @@ namespace OrderFood
             var selectMenu = context.Menus.Where(b => b.Name == NameMenu).FirstOrDefault();
 
             new EditDishWindow(selectDish, selectMenu).ShowDialog();
+            FillDataGrid();
+
         }
     }
 }

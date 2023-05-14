@@ -20,6 +20,11 @@
             <RowDefinition Height="247*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
+
+        <Button
+            Click="zxc"
+            Grid.Row="1"
+            Content="Изменить имя"/>
         <TextBox
             Grid.Row="1"
             x:Name="nameDish"
@@ -57,7 +62,6 @@
         </StackPanel>
 
         <StackPanel 
-            IsEnabled="False"
             Orientation="Horizontal"
             Margin="10,10,10,10"
             Grid.ColumnSpan="3"
@@ -69,9 +73,8 @@
                 Orientation="Vertical"
                 x:Name="panelIngridients">
                 <ComboBox
+                    DisplayMemberPath="Name"
                    x:Name="cbIngridient"
-                   SelectedItem="{Binding Product}"
-                   DisplayMemberPath="Name"
                    Margin="10,0,10,5"/>
             </StackPanel>
 
@@ -115,7 +118,7 @@
                 Margin=" 135,0,10,5"/>
 
             <Button 
-                Content="Добавить"
+                Content="Сохранить"
                 Width="90"
                 Click="addDish"
                 HorizontalAlignment="Right"
