@@ -206,6 +206,7 @@
                         Style="{StaticResource GrayButton}"
                         Height="30"
                         Width="300"
+                        HorizontalAlignment="Left"
                         Content="Добавить"
                         x:Name="addBtn" 
                         Margin="10,6,10,6"
@@ -224,6 +225,7 @@
                         Height="30"
                         Style="{StaticResource GrayButton}"
                         Content="Предворительный просмотр" 
+                        Width="250"
                         Click="Preview"/>
 
                 </WrapPanel>
