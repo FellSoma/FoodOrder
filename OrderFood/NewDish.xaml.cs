@@ -193,11 +193,12 @@ namespace OrderFood
                         textBox.Name = "cbService" + indexNameComboBoxs;
                         indexNameComboBoxs++;
                         comboBox.DisplayMemberPath = "Name";
-                        comboBox.Margin = new Thickness(10, 0, 10, 5);
+                        comboBox.Margin = new Thickness(10, 7, 10, 0);
                         comboBox.ItemsSource = db.Products.ToList();
                         comboBox.SelectedIndex = 0;
-                        textBox.Height = 26;
+                        textBox.Height = 29;
                         textBox.KeyDown += Count_KeyDown;
+                        textBox.Style = (Style)Resources["Textboxes"];
                         massComboBoxs[indexNameComboBoxs - 1] = comboBox;
                         massTextBoxs[indexNameComboBoxs - 1] = textBox;
                         panelIngridients.Children.Add(comboBox);

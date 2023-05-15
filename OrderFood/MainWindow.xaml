@@ -7,8 +7,55 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
-        Title="Главная" Height="490" Width="890">
+        Title="Главная" Height="520" Width="1090">
+    <Window.Resources>
+        
+        <Style TargetType="TextBox"
+            x:Key="Textboxes">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+
+                        <Grid x:Name="root" 
+                              Width="{TemplateBinding Property=Width}"
+                                    Height="{TemplateBinding Property=Height}"
+                              SnapsToDevicePixels="True">
+                            <Border x:Name="background" CornerRadius="6"
+                                    Background="White"
+                                    BorderBrush="#FFABADB3"
+                                    BorderThickness="2"
+                                    Width="{TemplateBinding Property=Width}"
+                                    Height="{TemplateBinding Property=Height}" />
+
+                            <ScrollViewer x:Name="PART_ContentHost"                                         
+                                          BorderThickness="1"
+                                          Background="Transparent"
+                                          Padding="{TemplateBinding Padding}"
+                                          IsTabStop="False"
+                                          Margin="6,9,0,6"
+                                          FontSize="15"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+    </Window.Resources>
     <Grid Background="#FFEAEAEA"  >
+
+        <Image Source="Images/logo.png"
+               Width="311"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Bottom"
+               Margin="0,0,-52,10"
+               
+               Opacity="0.70"/>
 
         <Grid Background="Transparent">
             <Grid.ColumnDefinitions>
@@ -29,6 +76,7 @@
                 <Button 
                     Width="100"
                     Style="{StaticResource GrayButton}"
+                    Height="30"
                     Margin="24,10,10,8"
                     x:Name="Add"
                     Click="AddNewDish"
@@ -38,12 +86,14 @@
                     Style="{StaticResource GrayButton}"
                     Width="120"
                     Margin="10,10,10,8"
+                    Height="30"
                     Click="Edit_Click"
                     x:Name="Edit"
                     Content="Рдактировать"/>
 
                 <Button 
                     Style="{StaticResource GrayButton}"
+                    Height="30"
                     Width="100"
                     Margin="10,10,10,8"
                     x:Name="Delete"
@@ -51,18 +101,33 @@
                     Content="Удалить"/>
 
                 <ComboBox
-                    Name="MenuBx"
+                    x:Name="MenuBx"
                     SelectionChanged="CangeMenu"
                     DisplayMemberPath="Name"
                     Width="120"
                     Margin="10,10,10,8"
                     Height="26"/>
 
+                <TextBlock
+                    Text="Поиск: "
+                    VerticalAlignment="Center"
+                    FontSize="16"/>
+                <TextBox
+                    Style="{StaticResource Textboxes}"
+                    Visibility="Visible"
+                    Height="30"
+                    IsEnabled="False"
+                    Width="200"
+                    x:Name="SortTextBox"
+                    TextChanged="SortTextBox_TextChanged"
+                    VerticalContentAlignment="Center"
+                    Margin="10,0,0,0"/>
+                
                 <Button 
                     Style="{StaticResource ExitButton}"
                     Width="100"
-                    Height="26"
-                    Margin="70,10,0,8"
+                    Height="30"
+                    Margin="20,10,0,8"
                     HorizontalAlignment="Right"
                     x:Name="Back"
                     Content="Выйти"
@@ -70,10 +135,11 @@
 
                 <Button 
                     Width="100"
-                    Height="26"
+                    Style="{StaticResource NextButton}"
                     Margin="16,10,0,8"
                     HorizontalAlignment="Right"
                     x:Name="AddOrder"
+                    Height="30"
                     Click="NextOrder"
                     Content="Далее"/>
 
@@ -85,7 +151,7 @@
                 Margin="0,30,20,30"
                 Grid.Column="1"
                 Grid.Row="1"/>
-            
+
             <DataGrid 
                 x:Name="DataGridOrder"
                 Margin="0,30,20,30"
@@ -108,33 +174,44 @@
                 <TextBox
                     Visibility="Hidden"
                     Height="26"
-                    x:Name="SortTextBox"
+                    x:Name="SortTextBo"
                     TextChanged="SortTextBox_TextChanged"
                     VerticalContentAlignment="Center"
                     Margin="20,30,20,0"/>
 
-                <StackPanel Orientation="Horizontal"
-                            Margin="5,20,20,0">
-                    <TextBlock Text="Кол-во"
-                               Margin="00,10,0,0"
-                               Height="26"
-                               TextAlignment="Center"/>
+
+
+                <WrapPanel Orientation="Horizontal"
+                            Margin="5,10,20,0">
+
+                    <TextBlock 
+                    Text="Количествово"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Left"
+                    Height="26"
+                    FontSize="17"
+                    TextAlignment="Center"/>
+
                     <TextBox
                         KeyDown="Count_KeyDown"
                         x:Name="Count"
-                        Height="26"
-                        Width="80"
+                        Style="{StaticResource Textboxes}"
+                        Width="153"
                         VerticalContentAlignment="Center"
-                        Margin="10,0,0,0"/>
+                        Margin="0,0,0,0"/>
+                </WrapPanel>
+
+                
                     <Button
                         Style="{StaticResource GrayButton}"
-                        Width="90"
+                        Height="30"
+                        Width="300"
                         Content="Добавить"
                         x:Name="addBtn" 
-                        Margin="10,6,0,6"
+                        Margin="10,6,10,6"
                         Click="addToOrder"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"
+                
+                <WrapPanel Orientation="Horizontal"
                             Margin="5,20,20,0">
                     <Button
                         Style="{StaticResource GrayButton}"
@@ -142,24 +219,17 @@
                         Width="20" 
                         Margin="0,0,10,0"
                         Click="PreviewBack"/>
-                    
+
                     <Button
+                        Height="30"
                         Style="{StaticResource GrayButton}"
-                        FontSize="17"
-                        Content="Просмотр" 
+                        Content="Предворительный просмотр" 
                         Click="Preview"/>
-                    
-                </StackPanel>
+
+                </WrapPanel>
             </StackPanel>
 
         </Grid>
-        <Image Source="Images/logo.png"
-               Width="311"
-               HorizontalAlignment="Right"
-               VerticalAlignment="Bottom"
-               Margin="0,0,-52,10"
-               
-               Opacity="0.70"/>
 
     </Grid>
 </Window>

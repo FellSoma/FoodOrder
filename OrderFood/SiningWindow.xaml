@@ -8,7 +8,48 @@
         Title="Вход"
         Height="400"
         Width="600"
+        MinHeight="400"
+        MinWidth="600"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="PasswordBox"
+            x:Key="PasswordBx">
+            <Setter Property="Margin" Value="0,00,0,0"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#CFCFCF"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+
+                        <Grid x:Name="root"
+                              Width="{TemplateBinding Property=Width}"
+                              Height="{TemplateBinding Property=Height}"
+                              SnapsToDevicePixels="True">
+                            <Border x:Name="background" CornerRadius="6"
+                                    Background="White"
+                                    BorderThickness="1"
+                                    BorderBrush="#FFABADB3"
+                                    Width="{TemplateBinding Property=Width}"
+                                    Height="{TemplateBinding Property=Height}" />
+
+                            <ScrollViewer x:Name="PART_ContentHost"                                         
+                                          BorderThickness="1"
+                                          Background="Transparent"
+                                          Padding="{TemplateBinding Padding}"
+                                          IsTabStop="False"
+                                          Margin="6,0,0,0"
+                                          FontSize="15"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
     <Grid Background="#FFEAEAEA">
         <Image Source="Images/logo.png"
                Width="311"
@@ -20,11 +61,11 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1.7*"/>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="1.2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -37,28 +78,33 @@
                 Grid.Row="1"
                 DisplayMemberPath="Name"
                 Grid.Column="1"
-                Margin="15,12,15,12"/>
+                Height="30"
+                Margin="15,10,15,10"/>
 
             <PasswordBox 
                 Name="Passwordbx"
+                Style="{StaticResource PasswordBx}"
                 Grid.Row="2"
-               VerticalContentAlignment="Center"
+                Height="30"
+                VerticalContentAlignment="Center"
                 Grid.Column="1"
-                Margin="15,12,15,12" />
+                Margin="15,3,15,10" />
 
             <Button
                 Style="{StaticResource GrayButton}"
                 Content="Войти"
+                Height="30"
                 Grid.Row="3"
                 Grid.Column="1"
-                Margin="15,12,15,12" Click="Sing"/>
+                Margin="15,10,15,10" Click="Sing"/>
 
             <Button
                 Style="{StaticResource ExitButton}"
                 Content="Выйти"
                 Grid.Row="4"
+                Height="30"
                 Grid.Column="1"
-                Margin="15,12,15,12"/>
+                Margin="15,10,15,10"/>
         </Grid>
     </Grid>
 </Window>

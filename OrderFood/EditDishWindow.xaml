@@ -5,9 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrderFood"
         mc:Ignorable="d"
-        Title="Редактирование" Height="450" Width="500"
+        Title="Редактирование" Height="650" Width="500"
         WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Window.Resources>
+
+        <Style TargetType="TextBox"
+            x:Key="Textboxes">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+
+                        <Grid x:Name="root" 
+                              Width="{TemplateBinding Property=Width}"
+                                    Height="{TemplateBinding Property=Height}"
+                              SnapsToDevicePixels="True">
+                            <Border x:Name="background" CornerRadius="6"
+                                    Background="White"
+                                    BorderBrush="#FFABADB3"
+                                    BorderThickness="2"
+                                    Width="{TemplateBinding Property=Width}"
+                                    Height="{TemplateBinding Property=Height}" />
+
+                            <ScrollViewer x:Name="PART_ContentHost"                                         
+                                          BorderThickness="1"
+                                          Background="Transparent"
+                                          Padding="{TemplateBinding Padding}"
+                                          IsTabStop="False"
+                                          Margin="6,5,0,0"
+                                          FontSize="15"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FFEAEAEA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1.2*"/>
@@ -21,14 +57,22 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
 
+        <TextBlock
+            Text="Наименование"
+            FontSize="15"
+            Grid.Column="3"
+            Grid.Row="1"
+            Height="30"
+            VerticalAlignment="Center"
+            Margin="5,0,0,0"/>
         
         <TextBox
+            Style="{StaticResource Textboxes}"
             Grid.Row="1"
             x:Name="nameDish"
             Text="{Binding Name}"
-            VerticalContentAlignment="Center"
             Grid.Column="1"
-            Margin="10,6,10,6"/>
+            Height="30"/>
 
 
         <StackPanel
@@ -64,6 +108,7 @@
             Grid.ColumnSpan="3"
             Grid.Row="3"
             x:Name="ourPanel">
+            
             <StackPanel
                 Width="150"
                 Margin="10"
@@ -72,7 +117,7 @@
                 <ComboBox
                     DisplayMemberPath="Name"
                    x:Name="cbIngridient"
-                   Margin="10,0,10,5"/>
+                   Margin="10,3,10,0"/>
             </StackPanel>
 
             <StackPanel
@@ -82,25 +127,36 @@
                 x:Name="panelWeith">
                 <TextBox 
                     KeyDown="Count_KeyDown"
+                    Style="{StaticResource Textboxes}"
                     x:Name="bxWeight"
-                    Height="26"/>
+                    Height="29"/>
             </StackPanel>
             <Button 
+                Style="{StaticResource GrayButton}"
                 Content="+"
                 Click="AddIngridient"
                 Height="26"
                 FontSize="15"
                 Width="30"/>
             <Button 
+                Style="{StaticResource GrayButton}"
                 Content="-"
                 Click="AddIngridient"
                 Margin="10,0,0,0"
                 Height="26"
-                FontSize="15"
+                FontSize="16"
                 Width="30"/>
         </StackPanel>
 
 
+            <TextBlock
+                Text="Вес в(Кг/Л)"
+                FontSize="15"
+                Grid.Column="3"
+                Height="30"
+                VerticalAlignment="Top"
+                Grid.Row="3"
+                Margin="10,23,20,20"/>
 
         <StackPanel 
             Orientation="Horizontal"
@@ -112,14 +168,16 @@
                 Content="Назад"
                 HorizontalAlignment="Right"
                 Width="80"
+                Style="{StaticResource ExitButton}"
                 Margin=" 135,0,10,5"/>
 
             <Button 
+                Style="{StaticResource NextButton}"
                 Content="Сохранить"
-                Width="90"
+                Width="100"
                 Click="addDish"
                 HorizontalAlignment="Right"
-                Margin=" 10,0,10,5"/>
+                Margin=" 0,0,10,5"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -119,3 +119,4 @@ D:\Gits\OrderFood\OrderFood\obj\Debug\OrderFood.pdb
 D:\Gits\OrderFood\OrderFood\obj\Debug\Themes\GrayButton.baml
 D:\Gits\OrderFood\OrderFood\obj\Debug\App.baml
 D:\Gits\OrderFood\OrderFood\obj\Debug\Themes\ExitButton.baml
+D:\Gits\OrderFood\OrderFood\obj\Debug\Themes\NextButton.baml

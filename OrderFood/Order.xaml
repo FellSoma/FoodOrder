@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         Title="Заказ" Height="450" Width="500" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="#FFEAEAEA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="414*"/>
@@ -24,6 +24,7 @@
 
         
          <Button 
+             Style="{StaticResource ExitButton}"
              Content="Закрыть"
              Grid.Column="1"
              Click="exit"

@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/GrayButton.xaml"/>
                 <ResourceDictionary Source="Themes/ExitButton.xaml"/>
+                <ResourceDictionary Source="Themes/NextButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
