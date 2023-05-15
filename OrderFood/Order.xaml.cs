@@ -95,10 +95,13 @@ namespace OrderFood
             ListViewOrder.Items.Add("Общие масса ингридиентов");
             for (int i = 0; i < db.Products.Count(); i++)
             {
-                if (SummWeigth[i, 1] != null)
+                if (Double.TryParse(SummWeigth[i, 1].ToString(), out Double value))
                 {
-                    authProduct = (Product)SummWeigth[i, 0];
-                    ListViewOrder.Items.Add(authProduct.Name + " " + SummWeigth[i, 1].ToString() + " " + authProduct.Unit.Name);
+                    if (value != 0)
+                    {
+                        authProduct = (Product)SummWeigth[i, 0];
+                        ListViewOrder.Items.Add(authProduct.Name + " " + SummWeigth[i, 1].ToString() + " " + authProduct.Unit.Name);
+                    }
                 }
             }
 

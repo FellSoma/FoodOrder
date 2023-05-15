@@ -116,6 +116,30 @@ namespace OrderFood
         }
 
         int allCount;
+
+        public void TestFillOrder()
+        {
+            allCount = 0;
+            try
+            {
+                if (orderArray != null)
+                {
+                    for (int i = 0; i < orderArray.Length / 2; i++)
+                    {
+                       allCount = allCount + (int)orderArray[i, 1];
+                    }
+                }
+            }
+            catch (InvalidCastException)
+            {
+                ListBoxOrder.Items.Clear();
+                for (int i = 0; i < orderArray.Length / 2; i++)
+                {
+                }
+                allCount = -1;
+            }
+        }
+
         private void Preview(object sender, RoutedEventArgs e)
         {
             ListBoxOrder.Items.Clear();
@@ -223,6 +247,7 @@ namespace OrderFood
         {
             if (MenuBx.SelectedItem != null)
             {
+                TestFillOrder();
                 if (allCount != 0)
                 {
                     Order g = new Order(orderArray);
