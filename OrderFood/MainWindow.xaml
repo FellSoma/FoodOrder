@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
-        Title="Главная" Height="520" Width="1090">
+        Title="Главная" Height="520" 
+        MinWidth="850"
+        MinHeight="420"
+        Background="#FFEAEAEA" Width="1090">
     <Window.Resources>
         
         <Style TargetType="TextBox"
@@ -47,7 +50,13 @@
 
 
     </Window.Resources>
-    <Grid Background="#FFEAEAEA"  >
+    <Viewbox
+        Stretch="Uniform">
+
+        <Grid 
+            Height="530" 
+            Width="1150" 
+            Background="#FFEAEAEA"  >
 
         <Image Source="Images/logo.png"
                Width="311"
@@ -112,11 +121,12 @@
                     Text="Поиск: "
                     VerticalAlignment="Center"
                     FontSize="16"/>
+
                 <TextBox
                     Style="{StaticResource Textboxes}"
                     Visibility="Visible"
                     Height="30"
-                    IsEnabled="False"
+                    IsEnabled="True"
                     Width="200"
                     x:Name="SortTextBox"
                     TextChanged="SortTextBox_TextChanged"
@@ -234,4 +244,5 @@
         </Grid>
 
     </Grid>
+    </Viewbox>
 </Window>

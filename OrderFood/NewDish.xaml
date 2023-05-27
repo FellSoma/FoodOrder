@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Добовление" Height="650" Width="500"
         MinHeight="650" MinWidth="500"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Background="#FFEAEAEA">
     <Window.Resources>
 
         <Style TargetType="TextBox"
@@ -44,126 +45,142 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Background="#FFEAEAEA">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1.2*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="11*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="96*"/>
-            <RowDefinition Height="247*"/>
-            <RowDefinition Height="40*"/>
-        </Grid.RowDefinitions>
-        <TextBlock
-            Text="Наименование"
-            FontSize="15"
-            Grid.Column="3"
-            Grid.Row="1"
-            Height="30"
-            VerticalAlignment="Center"
-            Margin="5,0,0,0"/>
-        <TextBlock
-                Text="Вес в(Кг/Л)"
+    <Viewbox
+       Stretch="Uniform" >
+
+        <Grid 
+        MinHeight="650"
+        MinWidth="510"
+        Background="#FFEAEAEA">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="96*"/>
+                <RowDefinition Height="247*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                Text="Наименование"
                 FontSize="15"
                 Grid.Column="3"
+                MinWidth="200"
+                Grid.Row="1"
                 Height="30"
-                VerticalAlignment="Top"
-                Grid.Row="3"
-                Margin="10,23,20,20"/>
-        <TextBox
-            Style="{StaticResource Textboxes}"
-            Grid.Row="1"
-            Height="30"
-            x:Name="nameDish"
-            VerticalContentAlignment="Center"
-            Grid.Column="1"
-            Margin="10,6,10,6"/>  
+                VerticalAlignment="Center"
+                Margin="5,10,0,0"/>
+            
+            
+            
+            <TextBox
+                Style="{StaticResource Textboxes}"
+                Grid.Row="1"
+                Height="30"
+                Width="150"
+                x:Name="nameDish"
+                VerticalContentAlignment="Center"
+                Grid.Column="1"
+                Margin="10,0,10,0"/>
 
 
-        <StackPanel
+            <StackPanel
             Orientation="Vertical"
             Margin="10,10,10,10"
             Grid.Column="0"
             Grid.Row="2"
             x:Name="MenuPanelLeft">
 
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel
+            <StackPanel
             Orientation="Vertical"
             Margin="10,10,10,10"
             Grid.Column="1"
             Grid.Row="2"
             x:Name="MenuPanelMidlle">
 
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel
+            <StackPanel
             Orientation="Vertical"
             Margin="10,10,10,10"
             Grid.Column="2"
             Grid.Row="2"
             x:Name="MenuPanelRight">
 
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel 
+            <StackPanel 
             Orientation="Horizontal"
             Margin="10,10,10,10"
             Grid.ColumnSpan="3"
             Grid.Row="3"
             x:Name="ourPanel">
-            <StackPanel
+                <StackPanel
                 Width="150"
                 Margin="10"
                 Orientation="Vertical"
                 x:Name="panelIngridients">
-                <ComboBox
+                    <ComboBox
                    x:Name="cbIngridient"
                    SelectedItem="{Binding Product}"
                    DisplayMemberPath="Name"
                    Margin="10,3,10,0"/>
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel
+                <StackPanel
                 Width="150"
                 Margin="10"
                 Orientation="Vertical"
                 x:Name="panelWeith">
-                <TextBox 
+                    <TextBox 
                     Style="{StaticResource Textboxes}"
                     KeyDown="Count_KeyDown"
                     x:Name="bxWeight"
                     Height="29"/>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Vertical">
+                    <TextBlock
+                         Text="Вес в(Кг/Л)"
+                         FontSize="15"
+                         Grid.Column="2"
+                         Height="27"
+                         VerticalAlignment="Top"
+                         Grid.Row="3"
+                         Margin="10,13,0,0"/>
+                    
+                    <Button 
+                         Content="+"
+                         Style="{StaticResource GrayButton}"
+                         Click="AddIngridient"
+                         Height="26"
+                         FontSize="15"
+                         Margin="0,100,0,0"
+                         Width="30"/>
+                    <Button 
+                         Content="-"
+                         Click="AddIngridient"
+                         Margin="0,10,0,0"
+                         Height="26"
+                         Style="{StaticResource GrayButton}"
+                         FontSize="16"
+                         Width="30"/>
+                </StackPanel>
             </StackPanel>
-            <Button 
-                Content="+"
-                Style="{StaticResource GrayButton}"
-                Click="AddIngridient"
-                Height="26"
-                FontSize="15"
-                Width="30"/>
-            <Button 
-                Content="-"
-                Click="AddIngridient"
-                Margin="10,0,0,0"
-                Height="26"
-                Style="{StaticResource GrayButton}"
-                FontSize="16"
-                Width="30"/>
-        </StackPanel>
 
 
 
-        <StackPanel 
+            <StackPanel 
             Orientation="Horizontal"
             Grid.Row="4"
             Grid.ColumnSpan="3" Margin="156,7,0,0">
 
-            <Button 
+                <Button 
                 Click="Back"
                 Content="Назад"
                 HorizontalAlignment="Right"
@@ -171,13 +188,14 @@
                 Style="{StaticResource ExitButton}"
                 Margin=" 135,0,10,5"/>
 
-            <Button 
+                <Button 
                 Style="{StaticResource NextButton}"
                 Content="Добавить"
                 Width="100"
                 Click="addDish"
                 HorizontalAlignment="Right"
                 Margin=" 0,0,10,5"/>
-        </StackPanel>
-    </Grid>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
 </Window>

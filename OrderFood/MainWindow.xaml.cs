@@ -1,5 +1,7 @@
 ﻿using OrderFood.Entities;
 using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,6 +41,7 @@ namespace OrderFood
         int i;
         int j;
 
+        List<string> DataGridList = new List<string>();
         public void FillDataGrid()
         {
             //заполнение DataGridOrder
@@ -54,7 +57,8 @@ namespace OrderFood
             where dofm.id_Menu == menu.id
             select new { ds.Name }).Distinct();
             DataGridOrder.ItemsSource = query.ToList();
-
+            DataGridList.AddRange((IEnumerable<string>)query.ToList());
+            
             //массив количества
 
             orderArray = new string[DataGridOrder.Items.Count, 2];
@@ -197,10 +201,29 @@ namespace OrderFood
             DataGridOrder.Visibility = Visibility.Visible;
             ListBoxOrder.Visibility = Visibility.Hidden;
         }
+        List<String> ProductsList = new List<String>();
 
         private void SortTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            ProductsList.Clear();
 
+            if (SortTextBox.Text.Equals(""))
+            {
+                FillDataGrid();
+            }
+            else
+            {
+                foreach (String product in DataGridList)
+                {
+
+                    if (product.Contains(SortTextBox.Text))
+                    {
+                        ProductsList.Add(product);
+                    }
+                }
+            }
+
+            DataGridOrder.ItemsSource = ProductsList.ToList();
         }
 
         private void AddNewDish(object sender, RoutedEventArgs e)

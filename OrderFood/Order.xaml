@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:OrderFood"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="Заказ" Height="450" Width="500" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FFEAEAEA">
+        Title="Заказ" Height="450" MinHeight="450" MinWidth="500" Width="500" Background="#FFEAEAEA" WindowStartupLocation="CenterScreen">
+    <Viewbox>
+
+        <Grid Height="450" Width="500" Background="#FFEAEAEA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="414*"/>
@@ -32,4 +34,5 @@
              Margin="0,10,2,10"/>
 
     </Grid>
+    </Viewbox>
 </Window>

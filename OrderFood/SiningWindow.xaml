@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:OrderFood"
         mc:Ignorable="d"
         Title="Вход"
+        Background="#FFEAEAEA"
         Height="400"
         Width="600"
         MinHeight="400"
@@ -50,7 +51,12 @@
         </Style>
 
     </Window.Resources>
-    <Grid Background="#FFEAEAEA">
+    <Viewbox>
+
+        <Grid 
+            Height="400"
+            Width="630" 
+            Background="#FFEAEAEA">
         <Image Source="Images/logo.png"
                Width="311"
                HorizontalAlignment="Right"
@@ -107,4 +113,5 @@
                 Margin="15,10,15,10"/>
         </Grid>
     </Grid>
+    </Viewbox>
 </Window>
