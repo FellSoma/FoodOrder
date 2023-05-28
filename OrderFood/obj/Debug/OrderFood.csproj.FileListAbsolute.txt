@@ -155,3 +155,5 @@ D:\Gits\FoodOrder\OrderFood\obj\Debug\OrderFood.csproj.CoreCompileInputs.cache
 D:\Gits\FoodOrder\OrderFood\obj\Debug\OrderFood.csproj.CopyComplete
 D:\Gits\FoodOrder\OrderFood\obj\Debug\OrderFood.exe
 D:\Gits\FoodOrder\OrderFood\obj\Debug\OrderFood.pdb
+D:\Gits\FoodOrder\OrderFood\obj\Debug\CustomMessageBox.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\CustomMessageBox.baml

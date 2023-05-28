@@ -1,7 +1,7 @@
-﻿using OrderFood.Entities;
+﻿using OrderFood.Classes;
+using OrderFood.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,7 +41,7 @@ namespace OrderFood
         int i;
         int j;
 
-        List<string> DataGridList = new List<string>();
+        String[] DataGridList = new string[1000];
         public void FillDataGrid()
         {
             //заполнение DataGridOrder
@@ -57,8 +57,9 @@ namespace OrderFood
             where dofm.id_Menu == menu.id
             select new { ds.Name }).Distinct();
             DataGridOrder.ItemsSource = query.ToList();
-            DataGridList.AddRange((IEnumerable<string>)query.ToList());
-            
+            //DataGridList.AddRange((IEnumerable<string>)query.ToList());
+            //DataGridList = query.ToList();
+
             //массив количества
 
             orderArray = new string[DataGridOrder.Items.Count, 2];
@@ -130,7 +131,7 @@ namespace OrderFood
                 {
                     for (int i = 0; i < orderArray.Length / 2; i++)
                     {
-                       allCount = allCount + (int)orderArray[i, 1];
+                        allCount = allCount + (int)orderArray[i, 1];
                     }
                 }
             }
@@ -150,8 +151,8 @@ namespace OrderFood
             DataGridOrder.Visibility = Visibility.Hidden;
             ListBoxOrder.Visibility = Visibility.Visible;
             allCount = 0;
-           try
-           {
+            try
+            {
                 if (orderArray != null)
                 {
                     for (int i = 0; i < orderArray.Length / 2; i++)
@@ -160,16 +161,16 @@ namespace OrderFood
                         allCount = allCount + (int)orderArray[i, 1];
                     }
                 }
-           }
+            }
             catch (InvalidCastException)
-           {
+            {
                 ListBoxOrder.Items.Clear();
                 for (int i = 0; i < orderArray.Length / 2; i++)
                 {
                     ListBoxOrder.Items.Add(orderArray[i, 0].ToString() + " " + orderArray[i, 1].ToString());
                 }
                 allCount = -1;
-           }
+            }
         }
         private void addToOrder(object sender, RoutedEventArgs e)
         {
@@ -184,14 +185,13 @@ namespace OrderFood
                     }
                 }
 
-                if (currentCount[0] == '0')
+                if (currentCount.Length == 0 || currentCount[0] == '0')
                 {
-                    MessageBox.Show("Вы ввели неправильное количество");
+                    new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
                     return;
                 }
-
                 orderArray[DataGridOrder.SelectedIndex, 1] = currentCount;
-                MessageBox.Show("Добавлено");
+                new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
                 Count.Text = "";
             }
         }
@@ -201,6 +201,7 @@ namespace OrderFood
             DataGridOrder.Visibility = Visibility.Visible;
             ListBoxOrder.Visibility = Visibility.Hidden;
         }
+        //Переделай поиск
         List<String> ProductsList = new List<String>();
 
         private void SortTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -240,22 +241,35 @@ namespace OrderFood
                 Entities.Dish authDish = null;
                 if (DataGridOrder.SelectedItem != null)
                 {
-                    string nameDish = shortName(DataGridOrder.SelectedItem.ToString());
-                    using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
+                    new CustomMessageBox("Вы уверены?", "Вы точно хотите удалить данное блюдо?",
+                    "Да", "Нет", 2, true).ShowDialog(); //диалоговое окно для подтверждения действия
+                    if (ListEvents.incidentResult is true) // проверка подтверждения
                     {
-                        authDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
-                        try
+                        new CustomMessageBox("Успех", "Удаление блюда прошло успешно!",
+                            "ОК", "Отменить", 1, true).ShowDialog(); //диалоговое окно, оповещающее об успешности действия
+                                                                     //здесь можно отменить действие
+                        if (ListEvents.incidentResult is true) //проверка ответа пользователя
                         {
-                            context.Dishes.Remove(authDish);
-                            context.SaveChanges();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message.ToString());
+
+
+                            string nameDish = shortName(DataGridOrder.SelectedItem.ToString());
+                            using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
+                            {
+                                authDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
+                                try
+                                {
+                                    context.Dishes.Remove(authDish);
+                                    context.SaveChanges();
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message.ToString());
+                                }
+                            }
+                            FillDataGrid();
+
                         }
                     }
-                    FillDataGrid();
-
                 }
                 else
                     MessageBox.Show("Не выбрано блюдо для удаление");
@@ -302,7 +316,7 @@ namespace OrderFood
         {
             Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2();
             string nameDish = DataGridOrder.SelectedItem.ToString().Substring(9, DataGridOrder.SelectedItem.ToString().Length - 11);
-            var selectDish =  context.Dishes.Where(b=> b.Name == nameDish).FirstOrDefault();
+            var selectDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
 
             //  string nameMenu = MenuBx.SelectedItem.ToString();
 

@@ -41,7 +41,8 @@ namespace OrderFood
             }
             else
             {
-                MessageBox.Show("Пользователь не найден");
+                new CustomMessageBox("Внимание!", "Пользователь не найден", "Ок", "Закрыть", 1, true).ShowDialog();
+
             }
         }
     }
