@@ -84,7 +84,8 @@ namespace OrderFood
                                         }
                                     }
                                 }
-                                ListViewOrder.Items.Add(authIngridient.Name.ToString() + " " + weigth.ToString() + " " + authIngridient.Unit.Name);
+                                ListViewOrder.Items.Add(authIngridient.Name.ToString() + " " + weigth.ToString()
+                                    + " (" + authIngridient.Unit.Name +") " + authIngridient.Mass);
                             }
                         }
                     }
@@ -100,7 +101,7 @@ namespace OrderFood
                     if (value != 0)
                     {
                         authProduct = (Product)SummWeigth[i, 0];
-                        ListViewOrder.Items.Add(authProduct.Name + " " + SummWeigth[i, 1].ToString() + " " + authProduct.Unit.Name);
+                        ListViewOrder.Items.Add(authProduct.Name + " " + SummWeigth[i, 1].ToString() + " (" + authProduct.Unit.Name + ") " + authProduct.Mass);
                     }
                 }
             }

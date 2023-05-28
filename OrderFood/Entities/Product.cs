@@ -24,7 +24,8 @@ namespace OrderFood.Entities
         public string Name { get; set; }
         public double Weight { get; set; }
         public int id_Unit { get; set; }
-    
+        public string Mass { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DishesOfIngredient> DishesOfIngredients { get; set; }
         public virtual Unit Unit { get; set; }

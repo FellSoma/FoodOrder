@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d8a5c65b15fb47a393e8f2e018fc0081" Name="Diagram1">
-        <EntityTypeShape EntityType="FoodOrderModel.Dish" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.DishesOfIngredient" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.DishesOfMenu" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.Menu" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.Order" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.Organization" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.OrganizationsOfMenu" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.Product" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.Unit" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoodOrderModel.User" Width="1.5" PointX="1.5" PointY="21" IsExpanded="true" />
-        <AssociationConnector Association="FoodOrderModel.FK_DishesOfIngredients_Dishes" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_DishesOfMenu_Dishes" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_Orders_Dishes" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_DishesOfIngredients_Products" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_DishesOfMenu_Menu" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_OrganizationsOfMenu_Menu" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_Organizations_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_OrganizationsOfMenu_Organizations" ManuallyRouted="false" />
-        <AssociationConnector Association="FoodOrderModel.FK_Products_Units" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FoodOrderModel.Dish" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FoodOrderModel.DishesOfIngredient" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="FoodOrderModel.DishesOfMenu" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="FoodOrderModel.Menu" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="FoodOrderModel.Order" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="FoodOrderModel.Organization" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="FoodOrderModel.OrganizationsOfMenu" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="FoodOrderModel.Product" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="FoodOrderModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3.5" />
+        <EntityTypeShape EntityType="FoodOrderModel.Unit" Width="1.5" PointX="1.5" PointY="13" />
+        <EntityTypeShape EntityType="FoodOrderModel.User" Width="1.5" PointX="1.5" PointY="19" />
+        <AssociationConnector Association="FoodOrderModel.FK_DishesOfIngredients_Dishes" />
+        <AssociationConnector Association="FoodOrderModel.FK_DishesOfMenu_Dishes" />
+        <AssociationConnector Association="FoodOrderModel.FK_Orders_Dishes" />
+        <AssociationConnector Association="FoodOrderModel.FK_DishesOfIngredients_Products" />
+        <AssociationConnector Association="FoodOrderModel.FK_DishesOfMenu_Menu" />
+        <AssociationConnector Association="FoodOrderModel.FK_OrganizationsOfMenu_Menu" />
+        <AssociationConnector Association="FoodOrderModel.FK_Organizations_Users" />
+        <AssociationConnector Association="FoodOrderModel.FK_OrganizationsOfMenu_Organizations" />
+        <AssociationConnector Association="FoodOrderModel.FK_Products_Units" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
