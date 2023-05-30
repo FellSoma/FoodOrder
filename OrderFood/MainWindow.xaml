@@ -38,7 +38,7 @@
                                           Background="Transparent"
                                           Padding="{TemplateBinding Padding}"
                                           IsTabStop="False"
-                                          Margin="6,9,0,6"
+                                          Margin="6,5,0,6"
                                           FontSize="15"
                                           TextElement.Foreground="{TemplateBinding Foreground}"/>
                         </Grid>
@@ -126,11 +126,12 @@
                     Style="{StaticResource Textboxes}"
                     Visibility="Visible"
                     Height="30"
+                    FontSize="13"
                     IsEnabled="True"
                     Width="200"
                     x:Name="SortTextBox"
                     TextChanged="SortTextBox_TextChanged"
-                    VerticalContentAlignment="Center"
+                    VerticalContentAlignment="Top"
                     Margin="10,0,0,0"/>
                 
                 <Button 
