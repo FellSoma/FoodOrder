@@ -10,23 +10,15 @@ namespace OrderFood
     /// </summary>
     public partial class Order : Window
     {
-        object[] orderArray;
-        object[] countArray;
+        Dish[] orderArray;
+        Int32[] countArray;
         int j = 0;
-        public Order(object[,] array)
+        public Order(Int32[] array, Dish[] array1 )
         {
             InitializeComponent();
-            orderArray = new object[array.Length / 2];
-            countArray = new object[array.Length / 2];
-            for (int i = 0; i < array.Length / 2; i++)
-            {
-                orderArray[i] = array[i, j];
-                for (j = 1; j < 2; j++)
-                {
-                    countArray[i] = array[i, j];
-                }
-                j = 0;
-            }
+            orderArray = array1;
+            countArray = array;
+           
         }
         object[,] SummWeigth;
         object[] DofiArray;
@@ -38,7 +30,7 @@ namespace OrderFood
             {
                 if (countArray[i].ToString() != "0")
                 {
-                    ListViewOrder.Items.Add(orderArray[i].ToString() + " " + countArray[i].ToString() + " порций");
+                    ListViewOrder.Items.Add(orderArray[i].Name + " " + countArray[i].ToString() + " порций");
                 }
             }
             ListViewOrder.Items.Add("------------------------------------------------");
@@ -56,22 +48,25 @@ namespace OrderFood
             {
                 if (countArray[i].ToString() != "0")
                 {
-                    ListViewOrder.Items.Add(orderArray[i].ToString() + " " + countArray[i].ToString() + " порций" + ":");
+                    ListViewOrder.Items.Add(orderArray[i].Name + " " + countArray[i].ToString() + " порций" + ":");
                     Entities.Product authIngridient = null;
                     Entities.Dish authDish = null;
 
                     using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
                     {
-                        string currentName = orderArray[i].ToString().Trim();
+                        string currentName = orderArray[i].Name.Trim();
                         authDish = context.Dishes.Where(b => b.Name == currentName).FirstOrDefault();
                         if (authDish != null)
                         {
                             DofiArray = db.DishesOfIngredients.Where(x => x.id_Dishes == authDish.id).ToArray();
+                            double weigth;
                             foreach (DishesOfIngredient item in DofiArray)
                             {
                                 Entities.DishesOfIngredient currentDOfI = (DishesOfIngredient)item;
                                 authIngridient = context.Products.Where(b => b.id == currentDOfI.id_ingridient).FirstOrDefault();
-                                double weigth = (double)(item.weigth * Convert.ToDouble(countArray[i]));
+
+                                weigth = (double)(item.weigth * Convert.ToDouble(countArray[i]));
+
                                 for (int l = 0; l < db.Products.Count(); l++)
                                 {
                                     authProduct = (Product)SummWeigth[l, 0];
@@ -84,8 +79,17 @@ namespace OrderFood
                                         }
                                     }
                                 }
-                                ListViewOrder.Items.Add(authIngridient.Name.ToString() + " " + weigth.ToString()
-                                    + " (" + authIngridient.Unit.Name +") " + authIngridient.Mass);
+                                if (weigth > 1000)
+                                {
+                                    weigth = weigth / 1000;
+                                    ListViewOrder.Items.Add(authIngridient.Name.ToString() + " " + weigth.ToString()
+                                    + " (" + authIngridient.Unit.Name + ") " + "Кг");
+                                }
+                                else
+                                {
+                                    ListViewOrder.Items.Add(authIngridient.Name.ToString() + " " + weigth.ToString()
+                                    + " (" + authIngridient.Unit.Name + ") " + "Гр");
+                                }
                             }
                         }
                     }
@@ -101,7 +105,13 @@ namespace OrderFood
                     if (value != 0)
                     {
                         authProduct = (Product)SummWeigth[i, 0];
-                        ListViewOrder.Items.Add(authProduct.Name + " " + SummWeigth[i, 1].ToString() + " (" + authProduct.Unit.Name + ") " + authProduct.Mass);
+                        if ((double)SummWeigth[i, 1] > 1000)
+                        {
+                            ListViewOrder.Items.Add(authProduct.Name + " " + ((double)SummWeigth[i, 1] / 1000).ToString() + " (" + authProduct.Unit.Name + ") " + "Кг");
+                        }
+                        else
+                            ListViewOrder.Items.Add(authProduct.Name + " " + (SummWeigth[i, 1]).ToString() + " (" + authProduct.Unit.Name + ") " + "Гр");
+
                     }
                 }
             }

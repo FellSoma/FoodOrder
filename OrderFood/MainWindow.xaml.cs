@@ -18,10 +18,13 @@ namespace OrderFood
         public MainWindow()
         {
             InitializeComponent();
+            DataGridAllDishes.ItemsSource = db.Dishes.ToList();
+            FillOrderArray();
 
         }
-        object[,] orderArray;
-
+        Int32[] orderArrayCount;
+        Dish[] orderArrayDish;
+        // Узнай что за переменная AllCount
         //Сделать предварительный просмотр СДЕЛАЛ 
         //Сделать добовление СДЕЛАЛ
         //Сделать удаление СДЕЛАЛ
@@ -37,11 +40,35 @@ namespace OrderFood
             Window g = new SiningWindow();
             g.Show();
             this.Close();
+            LoadData();
         }
         int i;
         int j;
+        Entities.Dish[] dishes;
+        public void LoadData()
+        {
+            dishes = db.Dishes.ToArray();
+            dishes = FindDishes(dishes); ;
+            if (dishes.Length != 0)
+            {
+                DataGridAllDishes.ItemsSource = dishes.ToList();
+            }
+            else
+            {
+                DataGridAllDishes.Visibility = Visibility.Collapsed;
+            }
+        }
 
-        String[] DataGridList = new string[1000];
+
+        public Entities.Dish[] FindDishes(Dish[] array)
+        {
+            if (SortTextBox.Text != null)
+            {
+                array = dishes.Where(s => s.Name.ToLower()
+                .Contains(SortTextBox.Text.ToLower())).ToArray();
+            }
+            return array;
+        }
         public void FillDataGrid()
         {
             //заполнение DataGridOrder
@@ -62,33 +89,45 @@ namespace OrderFood
 
             //массив количества
 
-            orderArray = new string[DataGridOrder.Items.Count, 2];
-            int j = 0;
-            Entities.Dish authMenu = null;
 
-            i = 0;
-            j = 0;
+            //Заполни масив всеми блюдами,
+           // orderArray = new string[db.Dishes.LongCount(), 2];
+           // int j = 0;
+           // Entities.Dish authMenu = null;
+           //
+           // i = 0;
+           // j = 0;
+           //
+           // foreach (var item in query)
+           // {
+           //     using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
+           //     {
+           //         authMenu = context.Dishes.Where(b => b.Name == item.Name.Trim()).FirstOrDefault();
+           //     }
+           //     if (authMenu != null)
+           //     {
+           //         orderArray[i, j] = authMenu.Name;
+           //         j = 1;
+           //         orderArray[i, j] = "0";
+           //         i++;
+           //         j = 0;
+           //     }
+           // }
+        }
+            
 
-            foreach (var item in query)
-            {
-                using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
-                {
-                    authMenu = context.Dishes.Where(b => b.Name == item.Name.Trim()).FirstOrDefault();
-                }
-                if (authMenu != null)
-                {
-                    orderArray[i, j] = authMenu.Name;
-                    j = 1;
-                    orderArray[i, j] = "0";
-                    i++;
-                    j = 0;
-                }
-            }
+        public void FillOrderArray()
+        {
+            orderArrayCount = new int[db.Dishes.LongCount()];
+            orderArrayDish = db.Dishes.ToArray();
+
         }
 
         private void CangeMenu(object sender, SelectionChangedEventArgs e)
         {
             FillDataGrid();
+            DataGridAllDishes.Visibility = Visibility.Hidden;
+            DataGridOrder.Visibility = Visibility.Visible;
         }
 
         public string shortName(string name)
@@ -127,20 +166,17 @@ namespace OrderFood
             allCount = 0;
             try
             {
-                if (orderArray != null)
+                if (orderArrayDish != null && orderArrayCount != null)
                 {
-                    for (int i = 0; i < orderArray.Length / 2; i++)
+                    for (int i = 0; i < orderArrayDish.Length / 2; i++)
                     {
-                        allCount = allCount + (int)orderArray[i, 1];
+                        allCount = allCount + Convert.ToInt32(orderArrayCount[i]);
                     }
                 }
             }
             catch (InvalidCastException)
             {
                 ListBoxOrder.Items.Clear();
-                for (int i = 0; i < orderArray.Length / 2; i++)
-                {
-                }
                 allCount = -1;
             }
         }
@@ -153,46 +189,81 @@ namespace OrderFood
             allCount = 0;
             try
             {
-                if (orderArray != null)
+                if (orderArrayDish != null && orderArrayCount != null)
                 {
-                    for (int i = 0; i < orderArray.Length / 2; i++)
+                    for (int i = 0; i < orderArrayDish.Length / 2; i++)
                     {
-                        ListBoxOrder.Items.Add(orderArray[i, 0].ToString() + " " + orderArray[i, 1].ToString());
-                        allCount = allCount + (int)orderArray[i, 1];
+                        Entities.Dish dish = orderArrayDish[i];
+                        if (Convert.ToInt32(orderArrayCount[i]) != 0 || orderArrayCount[i] != null)
+                        {
+                            ListBoxOrder.Items.Add(dish.Name + " " + orderArrayCount[i].ToString());
+                            allCount = allCount + Convert.ToInt32(orderArrayCount[i]);
+                        }
                     }
                 }
             }
             catch (InvalidCastException)
             {
                 ListBoxOrder.Items.Clear();
-                for (int i = 0; i < orderArray.Length / 2; i++)
+                for (int i = 0; i < orderArrayDish.Length / 2; i++)
                 {
-                    ListBoxOrder.Items.Add(orderArray[i, 0].ToString() + " " + orderArray[i, 1].ToString());
+                    ListBoxOrder.Items.Add(orderArrayDish[i].ToString() + " " + orderArrayCount[i].ToString());
                 }
                 allCount = -1;
             }
         }
         private void addToOrder(object sender, RoutedEventArgs e)
         {
-            if (DataGridOrder.SelectedItem != null)
+            if (DataGridAllDishes.Visibility == Visibility.Visible)
             {
-                string currentCount = "";
-                foreach (var item in Count.Text)
+                if (DataGridAllDishes.SelectedItem != null)
                 {
-                    if (item != ' ')
+                    string currentCount = "";
+                    foreach (var item in Count.Text)
                     {
-                        currentCount = currentCount + item;
+                        if (item != ' ')
+                        {
+                            currentCount = currentCount + item;
+                        }
                     }
-                }
 
-                if (currentCount.Length == 0 || currentCount[0] == '0')
-                {
-                    new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
-                    return;
+                    if (currentCount.Length == 0 || currentCount[0] == '0')
+                    {
+                        new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
+                        return;
+                    }
+                    orderArrayCount[DataGridAllDishes.SelectedIndex] = Convert.ToInt32(currentCount);
+                    new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
+                    Count.Text = "";
                 }
-                orderArray[DataGridOrder.SelectedIndex, 1] = currentCount;
-                new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
-                Count.Text = "";
+                else
+                    new CustomMessageBox("Внимание!", "Выберите", "Ок", "Закрыть", 3, true).ShowDialog();
+            }
+            else
+            {
+
+                if (DataGridOrder.SelectedItem != null)
+                {
+                    string currentCount = "";
+                    foreach (var item in Count.Text)
+                    {
+                        if (item != ' ')
+                        {
+                            currentCount = currentCount + item;
+                        }
+                    }
+
+                    if (currentCount.Length == 0 || currentCount[0] == '0')
+                    {
+                        new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
+                        return;
+                    }
+                    orderArrayCount[DataGridOrder.SelectedIndex] = Convert.ToInt32(currentCount);
+                    new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
+                    Count.Text = "";
+                }
+                else
+                    new CustomMessageBox("Внимание!", "Выберите", "Ок", "Закрыть", 3, true).ShowDialog();
             }
         }
 
@@ -206,25 +277,8 @@ namespace OrderFood
 
         private void SortTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ProductsList.Clear();
-
-            if (SortTextBox.Text.Equals(""))
-            {
-                FillDataGrid();
-            }
-            else
-            {
-                foreach (String product in DataGridList)
-                {
-
-                    if (product.Contains(SortTextBox.Text))
-                    {
-                        ProductsList.Add(product);
-                    }
-                }
-            }
-
-            DataGridOrder.ItemsSource = ProductsList.ToList();
+            LoadData();
+            DataGridAllDishes.Visibility = Visibility.Visible;
         }
 
         private void AddNewDish(object sender, RoutedEventArgs e)
@@ -245,30 +299,21 @@ namespace OrderFood
                     "Да", "Нет", 2, true).ShowDialog(); //диалоговое окно для подтверждения действия
                     if (ListEvents.incidentResult is true) // проверка подтверждения
                     {
-                        new CustomMessageBox("Успех", "Удаление блюда прошло успешно!",
-                            "ОК", "Отменить", 1, true).ShowDialog(); //диалоговое окно, оповещающее об успешности действия
-                                                                     //здесь можно отменить действие
-                        if (ListEvents.incidentResult is true) //проверка ответа пользователя
+                        string nameDish = shortName(DataGridOrder.SelectedItem.ToString());
+                        using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
                         {
-
-
-                            string nameDish = shortName(DataGridOrder.SelectedItem.ToString());
-                            using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
+                            authDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
+                            try
                             {
-                                authDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
-                                try
-                                {
-                                    context.Dishes.Remove(authDish);
-                                    context.SaveChanges();
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.Message.ToString());
-                                }
+                                context.Dishes.Remove(authDish);
+                                context.SaveChanges();
                             }
-                            FillDataGrid();
-
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message.ToString());
+                            }
                         }
+                        FillDataGrid();
                     }
                 }
                 else
@@ -282,12 +327,12 @@ namespace OrderFood
 
         private void NextOrder(object sender, RoutedEventArgs e)
         {
-            if (MenuBx.SelectedItem != null)
+            if (DataGridAllDishes.Visibility == Visibility.Visible)
             {
                 TestFillOrder();
                 if (allCount != 0)
                 {
-                    Order g = new Order(orderArray);
+                    Order g = new Order(orderArrayCount,orderArrayDish);
                     g.ShowDialog();
                 }
                 else
@@ -296,7 +341,24 @@ namespace OrderFood
                 }
             }
             else
-                MessageBox.Show("Выберите меню");
+            {
+
+                if (MenuBx.SelectedItem != null)
+                {
+                    TestFillOrder();
+                    if (allCount != 0)
+                    {
+                        Order g = new Order(orderArrayCount, orderArrayDish);
+                        g.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ни одно блюдо не заполнено");
+                    }
+                }
+                else
+                    MessageBox.Show("Выберите меню");
+            }
         }
 
         private void Count_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

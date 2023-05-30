@@ -167,6 +167,7 @@
                 Margin="0,30,20,30"
                 ColumnWidth="*"
                 Grid.Column="1"
+                Visibility="Visible"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 Grid.Row="1">
@@ -174,7 +175,20 @@
                     <DataGridTextColumn IsReadOnly="True" Header="Название" Width="2*" Binding="{Binding Name}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <!--Правая панель-->
+                <DataGrid 
+                    x:Name="DataGridAllDishes"
+                    Margin="0,30,20,30"
+                    ColumnWidth="*"
+                    Grid.Column="1"
+                    Visibility="Hidden"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    Grid.Row="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Header="Название" Width="2*" Binding="{Binding Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!--Правая панель-->
             <StackPanel
                 Background="Transparent"
                 Grid.Row="1"

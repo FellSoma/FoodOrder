@@ -146,7 +146,7 @@
                 <StackPanel
                     Orientation="Vertical">
                     <TextBlock
-                         Text="Вес в(Кг/Л)"
+                         Text="Вес в(Гр)"
                          FontSize="15"
                          Grid.Column="2"
                          Height="27"
