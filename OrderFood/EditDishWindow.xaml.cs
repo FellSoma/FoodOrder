@@ -53,7 +53,7 @@ namespace OrderFood
             cbIngridient.SelectedIndex = connectionIngridient[0].id_ingridient - 1;
             bxWeight.Text = connectionIngridient[0].weigth.ToString();
 
-            for (;indexConnection < connectionIngridient.Length; indexConnection++)
+            for (; indexConnection < connectionIngridient.Length; indexConnection++)
             {
                 IngridientCompletion();
             }
@@ -129,23 +129,38 @@ namespace OrderFood
 
             if (massTextBoxs[0].Text == "" || massTextBoxs[0].Text == "0" || massComboBoxs[0].Text == "")
             {
-                MessageBox.Show("Заполните массу ингридиентов \nУкажите все ингридиенты");
+                new CustomMessageBox("Внимание!", "Заполните массу ингридиентов \nУкажите все ингридиенты", "Ок", "Закрыть", 3, true).ShowDialog();
+
+                return;
+            }
+            if (!int.TryParse(massTextBoxs[0].Text, out int result))
+            {
+                new CustomMessageBox("Внимание!", "Масса  должна быть с плавающей запятой", "Ок", "Закрыть", 3, true).ShowDialog();
                 return;
             }
             for (int i = 0; i < indexNameComboBoxs - 1; i++)
             {
-                if (massComboBoxs[i].Text == massComboBoxs[++i].Text || massComboBoxs[i].Text == "")
+                for (int j = 1; j <= indexNameComboBoxs - 1; j++)
                 {
-                    MessageBox.Show("Уберите повторяющиеся ингридиены");
-                    return;
+                    if (massComboBoxs[i].Text == massComboBoxs[j].Text || massComboBoxs[j].Text == "" || massComboBoxs[i].Text == "")
+                    {
+                        new CustomMessageBox("Внимание!", "Уберите повторяющиеся ингридиены", "Ок", "Закрыть", 3, true).ShowDialog();
+                        return;
+                    }
+                    if (!int.TryParse(massTextBoxs[i].Text, out int result1))
+                    {
+                        new CustomMessageBox("Внимание!", "Масса  должна быть с плавающей запятой", "Ок", "Закрыть", 3, true).ShowDialog();
+                        break;
+                    }
                 }
+
 
             }
             for (int i = 0; i < indexNameComboBoxs; i++)
             {
                 if (massTextBoxs[i].Text == "" || massTextBoxs[i].Text == "0")
                 {
-                    MessageBox.Show("Заполните массу ингридиентов");
+                    new CustomMessageBox("Внимание!", "Заполните массу ингридиентов", "Ок", "Закрыть", 3, true).ShowDialog();
                     return;
                 }
                 string word = massTextBoxs[i].Text;
@@ -155,7 +170,7 @@ namespace OrderFood
                         || word[j] == '%' || word[j] == '^' || word[j] == '&'
                         || word[j] == '*' || word[j] == '(' || word[j] == ')')
                     {
-                        MessageBox.Show("Уберите лишние символы");
+                        new CustomMessageBox("Внимание!", "Уберите лишние символы", "Ок", "Закрыть", 3, true).ShowDialog();
                         return;
                     }
                 }
@@ -175,7 +190,7 @@ namespace OrderFood
                 db.DishesOfIngredients.RemoveRange(connectionIngridient);
                 db.DishesOfMenus.RemoveRange(connectionMenu);
                 db.SaveChanges();
-               
+
                 Entities.Dish authDish = null;
                 Entities.Product authIngridient = null;
                 Entities.Menu authMenu = null;
@@ -187,6 +202,7 @@ namespace OrderFood
                     {
                         if ((bool)massCheckBox[i].IsChecked)
                         {
+
                             string currentNameMenu = (string)massCheckBox[i].Content;
                             authMenu = context.Menus.Where(b => b.Name == currentNameMenu).FirstOrDefault();
                             DishesOfMenu dishesOfMenu = new DishesOfMenu();
@@ -217,13 +233,12 @@ namespace OrderFood
                                 }
                             }
                         }
-                        MessageBox.Show("Блюдо изменено");
+                        new CustomMessageBox("Внимание!", "Блюдо изменено", "Ок", "Закрыть", 1, true).ShowDialog();
                         UpdateFillMass();
                     }
                 }
             }
-            else MessageBox.Show("Заполните поля");
-
+            else new CustomMessageBox("Внимание!", "Заполните поля", "Ок", "Закрыть", 3, true).ShowDialog();
 
         }
 
@@ -261,7 +276,7 @@ namespace OrderFood
                     }
                     else
                     {
-                        MessageBox.Show("Вы достигли лимита выбора услуг.");
+                        new CustomMessageBox("Внимание!", "Вы достигли лимита выбора услуг.", "Ок", "Закрыть", 1, true).ShowDialog();
                     }
                     break;
                 case "-":
@@ -278,7 +293,7 @@ namespace OrderFood
                     }
                     else
                     {
-                        MessageBox.Show("Вы достигли лимита выбора услуг.");
+                        new CustomMessageBox("Внимание!", "Вы достигли лимита выбора услуг.", "Ок", "Закрыть", 1, true).ShowDialog();
                     }
                     break;
                 default:

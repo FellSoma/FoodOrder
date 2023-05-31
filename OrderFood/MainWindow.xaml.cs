@@ -339,7 +339,7 @@ namespace OrderFood
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message.ToString());
+                            new CustomMessageBox("Ошибка!", ex.Message.ToString(), "Ок", "Закрыть", 4, true).ShowDialog();
                         }
                         DataGridAllDishes.ItemsSource = db.Dishes.ToList();
                         return;
@@ -364,18 +364,20 @@ namespace OrderFood
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message.ToString());
+                                new CustomMessageBox("Ошибка!", ex.Message.ToString(), "Ок", "Закрыть", 4, true).ShowDialog();
                             }
                         }
                         FillDataGrid();
                     }
                 }
                 else
-                    MessageBox.Show("Не выбрано блюдо для удаление");
+                    new CustomMessageBox("Внимание!", "Не выбрано блюдо для удаление!", "Ок", "Закрыть", 3, true).ShowDialog();
+
             }
             catch (Exception)
             {
-                MessageBox.Show("Не выбрана ни одна строка для удаления!");
+                new CustomMessageBox("Внимание!", "Не выбрана ни одна строка для удаления!", "Ок", "Закрыть", 3, true).ShowDialog();
+
             }
         }
 
@@ -391,7 +393,8 @@ namespace OrderFood
                 }
                 else
                 {
-                    MessageBox.Show("Ни одно блюдо не заполнено");
+                    new CustomMessageBox("Внимание!", "Ни одно блюдо не заполнено!", "Ок", "Закрыть", 3, true).ShowDialog();
+
                 }
             }
             else
@@ -407,11 +410,11 @@ namespace OrderFood
                     }
                     else
                     {
-                        MessageBox.Show("Ни одно блюдо не заполнено");
+                        new CustomMessageBox("Внимание!", "Ни одно блюдо не заполнено!", "Ок", "Закрыть", 3, true).ShowDialog();
                     }
                 }
                 else
-                    MessageBox.Show("Выберите меню");
+                    new CustomMessageBox("Внимание!", "Выберите меню!", "Ок", "Закрыть", 3, true).ShowDialog();
             }
         }
 
