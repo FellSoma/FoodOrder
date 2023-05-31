@@ -65,11 +65,15 @@ namespace OrderFood
             }
             for (int i = 0; i < indexNameComboBoxs - 1; i++)
             {
-                if (massComboBoxs[i].Text == massComboBoxs[++i].Text || massComboBoxs[i].Text == "")
+                for (int j = 1; j <= indexNameComboBoxs - 1; j++)
                 {
-                    MessageBox.Show("Уберите повторяющиеся ингридиены");
-                    return;
+                    if (massComboBoxs[i].Text == massComboBoxs[j].Text || massComboBoxs[j].Text == "" || massComboBoxs[i].Text == "")
+                    {
+                        MessageBox.Show("Уберите повторяющиеся ингридиены");
+                        return;
+                    }
                 }
+                
 
             }
             for (int i = 0; i < indexNameComboBoxs; i++)

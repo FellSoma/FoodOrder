@@ -91,30 +91,30 @@ namespace OrderFood
 
 
             //Заполни масив всеми блюдами,
-           // orderArray = new string[db.Dishes.LongCount(), 2];
-           // int j = 0;
-           // Entities.Dish authMenu = null;
-           //
-           // i = 0;
-           // j = 0;
-           //
-           // foreach (var item in query)
-           // {
-           //     using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
-           //     {
-           //         authMenu = context.Dishes.Where(b => b.Name == item.Name.Trim()).FirstOrDefault();
-           //     }
-           //     if (authMenu != null)
-           //     {
-           //         orderArray[i, j] = authMenu.Name;
-           //         j = 1;
-           //         orderArray[i, j] = "0";
-           //         i++;
-           //         j = 0;
-           //     }
-           // }
+            // orderArray = new string[db.Dishes.LongCount(), 2];
+            // int j = 0;
+            // Entities.Dish authMenu = null;
+            //
+            // i = 0;
+            // j = 0;
+            //
+            // foreach (var item in query)
+            // {
+            //     using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
+            //     {
+            //         authMenu = context.Dishes.Where(b => b.Name == item.Name.Trim()).FirstOrDefault();
+            //     }
+            //     if (authMenu != null)
+            //     {
+            //         orderArray[i, j] = authMenu.Name;
+            //         j = 1;
+            //         orderArray[i, j] = "0";
+            //         i++;
+            //         j = 0;
+            //     }
+            // }
         }
-            
+
 
         public void FillOrderArray()
         {
@@ -214,59 +214,91 @@ namespace OrderFood
         }
         private void addToOrder(object sender, RoutedEventArgs e)
         {
-            if (DataGridAllDishes.Visibility == Visibility.Visible)
+            try
             {
-                if (DataGridAllDishes.SelectedItem != null)
-                {
-                    string currentCount = "";
-                    foreach (var item in Count.Text)
-                    {
-                        if (item != ' ')
-                        {
-                            currentCount = currentCount + item;
-                        }
-                    }
 
-                    if (currentCount.Length == 0 || currentCount[0] == '0')
+                if (DataGridAllDishes.Visibility == Visibility.Visible)
+                {
+                    if (DataGridAllDishes.SelectedItem != null)
                     {
-                        new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
+                        string currentCount = "";
+                        foreach (var item in Count.Text)
+                        {
+                            if (item != ' ')
+                            {
+                                currentCount = currentCount + item;
+                            }
+                        }
+
+                        if (currentCount.Length == 0 || currentCount[0] == '0')
+                        {
+                            new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
+                            return;
+                        }
+
+                        Dish currentItemDataGrid = (Dish)DataGridAllDishes.SelectedItem;
+                        indexSelectDish = 0;
+                        foreach (var item in orderArrayDish)
+                        {
+                            if (item.id == currentItemDataGrid.id)
+                            {
+                                break;
+                            }
+                            indexSelectDish++;
+                        }
+                        orderArrayCount[indexSelectDish] = Convert.ToInt32(currentCount);
+                        new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
+                        Count.Text = "";
                         return;
                     }
-                    orderArrayCount[DataGridAllDishes.SelectedIndex] = Convert.ToInt32(currentCount);
-                    new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
-                    Count.Text = "";
+                    else
+                        new CustomMessageBox("Внимание!", "Выберите", "Ок", "Закрыть", 3, true).ShowDialog();
                 }
                 else
-                    new CustomMessageBox("Внимание!", "Выберите", "Ок", "Закрыть", 3, true).ShowDialog();
+                {
+
+                    if (DataGridOrder.SelectedItem != null)
+                    {
+                        string currentCount = "";
+                        foreach (var item in Count.Text)
+                        {
+                            if (item != ' ')
+                            {
+                                currentCount = currentCount + item;
+                            }
+                        }
+
+                        if (currentCount.Length == 0 || currentCount[0] == '0')
+                        {
+                            new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
+                            return;
+                        }
+                        Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2();
+                        string nameDish = DataGridOrder.SelectedItem.ToString().Substring(9, DataGridOrder.SelectedItem.ToString().Length - 11);
+                        var selectDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
+                        indexSelectDish = 0;
+                        foreach (var item in orderArrayDish)
+                        {
+                            if (item.id == selectDish.id)
+                            {
+                                break;
+                            }
+                            indexSelectDish++;
+                        }
+                        orderArrayCount[indexSelectDish] = Convert.ToInt32(currentCount);
+                        new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
+                        Count.Text = "";
+                    }
+                    else
+                        new CustomMessageBox("Внимание!", "Выберите", "Ок", "Закрыть", 3, true).ShowDialog();
+                }
             }
-            else
+            catch (Exception)
             {
-
-                if (DataGridOrder.SelectedItem != null)
-                {
-                    string currentCount = "";
-                    foreach (var item in Count.Text)
-                    {
-                        if (item != ' ')
-                        {
-                            currentCount = currentCount + item;
-                        }
-                    }
-
-                    if (currentCount.Length == 0 || currentCount[0] == '0')
-                    {
-                        new CustomMessageBox("Внимание!", "Вы ввели неправильно количество", "Ок", "Закрыть", 3, true).ShowDialog();
-                        return;
-                    }
-                    orderArrayCount[DataGridOrder.SelectedIndex] = Convert.ToInt32(currentCount);
-                    new CustomMessageBox("Успех!", "Добавлено", "Ок", "Закрыть", 1, true).ShowDialog();
-                    Count.Text = "";
-                }
-                else
-                    new CustomMessageBox("Внимание!", "Выберите", "Ок", "Закрыть", 3, true).ShowDialog();
+                new CustomMessageBox("Внимание!", "Неизвестная ошибка", "Ок", "Закрыть", 4, true).ShowDialog();
             }
         }
-
+        int indexSelectDish;
         private void PreviewBack(object sender, RoutedEventArgs e)
         {
             DataGridOrder.Visibility = Visibility.Visible;
@@ -292,12 +324,33 @@ namespace OrderFood
         {
             try
             {
-                Entities.Dish authDish = null;
-                if (DataGridOrder.SelectedItem != null)
+                if (DataGridAllDishes.SelectedItem != null)
                 {
                     new CustomMessageBox("Вы уверены?", "Вы точно хотите удалить данное блюдо?",
-                    "Да", "Нет", 2, true).ShowDialog(); //диалоговое окно для подтверждения действия
-                    if (ListEvents.incidentResult is true) // проверка подтверждения
+                   "Да", "Нет", 2, true).ShowDialog();
+                    if (ListEvents.incidentResult is true)
+                    {
+                        Dish currentrow = DataGridAllDishes.SelectedItem as Dish;
+                        try
+                        {
+                            db.Dishes.Remove(currentrow);
+                            db.SaveChanges();
+                            new CustomMessageBox("Успех!", "Блюдо удалено", "Ок", "Закрыть", 1, true).ShowDialog();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message.ToString());
+                        }
+                        DataGridAllDishes.ItemsSource = db.Dishes.ToList();
+                        return;
+                    }
+                }
+                if (DataGridOrder.SelectedItem != null)
+                {
+                    Entities.Dish authDish = null;
+                    new CustomMessageBox("Вы уверены?", "Вы точно хотите удалить данное блюдо?",
+                    "Да", "Нет", 2, true).ShowDialog();
+                    if (ListEvents.incidentResult is true)
                     {
                         string nameDish = shortName(DataGridOrder.SelectedItem.ToString());
                         using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
@@ -307,6 +360,7 @@ namespace OrderFood
                             {
                                 context.Dishes.Remove(authDish);
                                 context.SaveChanges();
+                                new CustomMessageBox("Успех!", "Блюдо удалено", "Ок", "Закрыть", 1, true).ShowDialog();
                             }
                             catch (Exception ex)
                             {
@@ -332,7 +386,7 @@ namespace OrderFood
                 TestFillOrder();
                 if (allCount != 0)
                 {
-                    Order g = new Order(orderArrayCount,orderArrayDish);
+                    Order g = new Order(orderArrayCount, orderArrayDish);
                     g.ShowDialog();
                 }
                 else
@@ -376,17 +430,46 @@ namespace OrderFood
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2();
-            string nameDish = DataGridOrder.SelectedItem.ToString().Substring(9, DataGridOrder.SelectedItem.ToString().Length - 11);
-            var selectDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
+            try
+            {
+                if (DataGridAllDishes.SelectedItem != null)
+                {
+                    if (MenuBx.SelectedItem != null)
+                    {
+                        Dish currentrow = DataGridAllDishes.SelectedItem as Dish;
+                        string NameMenu = MenuBx.SelectedItem.ToString().Substring(9, MenuBx.SelectedItem.ToString().Length - 11);
+                        var selectMenu = db.Menus.Where(b => b.Name == NameMenu).FirstOrDefault();
+                        DishesOfMenu Dom = db.DishesOfMenus.Where(b => b.id_Menu == selectMenu.id && b.id_Dishes == currentrow.id).FirstOrDefault();
+                        if (Dom != null)
+                        {
+                            new EditDishWindow(currentrow, selectMenu).ShowDialog();
+                            return;
+                        }
+                        else
+                            new CustomMessageBox("Внимание!", "Этого блюда нет в меню!", "Ок", "Закрыть", 3, true).ShowDialog();
+                    }
+                    else
+                        new CustomMessageBox("Внимание!", "Выберите меню!", "Ок", "Закрыть", 3, true).ShowDialog();
+                }
+                if (DataGridOrder.SelectedItem != null)
+                {
+                    Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2();
+                    string nameDish = DataGridOrder.SelectedItem.ToString().Substring(9, DataGridOrder.SelectedItem.ToString().Length - 11);
+                    var selectDish = context.Dishes.Where(b => b.Name == nameDish).FirstOrDefault();
 
-            //  string nameMenu = MenuBx.SelectedItem.ToString();
+                    //  string nameMenu = MenuBx.SelectedItem.ToString();
 
-            string NameMenu = MenuBx.SelectedItem.ToString().Substring(9, MenuBx.SelectedItem.ToString().Length - 11);
-            var selectMenu = context.Menus.Where(b => b.Name == NameMenu).FirstOrDefault();
+                    string NameMenu = MenuBx.SelectedItem.ToString().Substring(9, MenuBx.SelectedItem.ToString().Length - 11);
+                    var selectMenu = context.Menus.Where(b => b.Name == NameMenu).FirstOrDefault();
 
-            new EditDishWindow(selectDish, selectMenu).ShowDialog();
-            FillDataGrid();
+                    new EditDishWindow(selectDish, selectMenu).ShowDialog();
+                    FillDataGrid();
+                }
+            }
+            catch (Exception)
+            {
+                new CustomMessageBox("Внимание!", "Не выбрана ни одна строка для редактирования!", "Ок", "Закрыть", 3, true).ShowDialog();
+            }
 
         }
     }

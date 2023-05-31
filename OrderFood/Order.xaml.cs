@@ -16,6 +16,7 @@ namespace OrderFood
         Dish[] orderArray;
         Int32[] countArray;
         int j = 0;
+        object[,,] WdCellCount;
         public Order(Int32[] array, Dish[] array1)
         {
             InitializeComponent();
@@ -42,11 +43,13 @@ namespace OrderFood
             ListViewOrder.Items.Add("");
 
             Product[] productArray = db.Products.ToArray();
-            SummWeigth = new object[db.Products.Count(), 2];
+            SummWeigth = new object[db.Products.Count(), 3];
+            WdCellCount = new object[orderArray.Length, db.DishesOfIngredients.Count(), 4];
             for (int j = 0; j < db.Products.Count(); j++)
             {
                 SummWeigth[j, 0] = productArray[j];
                 SummWeigth[j, 1] = 0;
+                SummWeigth[j, 2] = false;
             }
 
             for (int i = 0; i < orderArray.Length; i++)
@@ -65,8 +68,10 @@ namespace OrderFood
                         {
                             DofiArray = db.DishesOfIngredients.Where(x => x.id_Dishes == authDish.id).ToArray();
                             double weigth;
+                            int indexDofi = 0;
                             foreach (DishesOfIngredient item in DofiArray)
                             {
+                                WdCellCount[i, 0, 0] = authDish;
                                 Entities.DishesOfIngredient currentDOfI = (DishesOfIngredient)item;
                                 authIngridient = context.Products.Where(b => b.id == currentDOfI.id_ingridient).FirstOrDefault();
 
@@ -79,13 +84,18 @@ namespace OrderFood
                                     {
                                         if (Double.TryParse(SummWeigth[l, 1].ToString(), out Double value))
                                         {
-                                            SummWeigth[l, 1] = weigth + value;
 
+                                            WdCellCount[i, l, 1] = authIngridient;
+                                            WdCellCount[i, l, 2] = value;
+                                            WdCellCount[i, l, 3] = false;
+
+                                            SummWeigth[l, 1] = weigth + value;
                                         }
                                     }
                                 }
                                 if (weigth > 1000)
                                 {
+                                    WdCellCount[i, indexDofi, 3] = true;
                                     countRows++;
                                     weigth = weigth / 1000;
                                     ListViewOrder.Items.Add(authIngridient.Name.ToString() + " " + weigth.ToString()
@@ -93,10 +103,12 @@ namespace OrderFood
                                 }
                                 else
                                 {
+                                    WdCellCount[i, indexDofi, 3] = false;
                                     countRows++;
                                     ListViewOrder.Items.Add(authIngridient.Name.ToString() + " " + weigth.ToString()
                                     + " (" + authIngridient.Unit.Name + ") " + "Гр");
                                 }
+                                indexDofi++;
                             }
                         }
                     }
@@ -116,12 +128,16 @@ namespace OrderFood
                         authProduct = (Product)SummWeigth[i, 0];
                         if ((double)SummWeigth[i, 1] > 1000)
                         {
-                            ProductsRow[i] = authProduct;
+                            SummWeigth[i, 2] = true;
+                            ProductsRow[indexProductRow] = authProduct;
+                            indexProductRow++;
                             ListViewOrder.Items.Add(authProduct.Name + " " + ((double)SummWeigth[i, 1] / 1000).ToString() + " (" + authProduct.Unit.Name + ") " + "Кг");
                         }
                         else
                         {
-                            ProductsRow[i] = authProduct;
+                            SummWeigth[i, 2] = false;
+                            ProductsRow[indexProductRow] = authProduct;
+                            indexProductRow++;
                             ListViewOrder.Items.Add(authProduct.Name + " " + (SummWeigth[i, 1]).ToString() + " (" + authProduct.Unit.Name + ") " + "Гр");
                         }
 
@@ -131,7 +147,7 @@ namespace OrderFood
 
 
         }
-
+        int indexProductRow = 0;
         private void exit(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -143,47 +159,80 @@ namespace OrderFood
 
             Document document = application.Documents.Add();
 
+            document.PageSetup.BottomMargin = 1;
+            document.PageSetup.TopMargin = 20;
+            document.PageSetup.LeftMargin = 30;
+            document.PageSetup.RightMargin = 30;
+
             Paragraph tableParagaph = document.Paragraphs.Add();
             Range tableRange = tableParagaph.Range;
-            Table orderTable = document.Tables.Add(tableRange, ProductsRow.Length + 1, countColmns + 2);
+            Table orderTable = document.Tables.Add(tableRange, indexProductRow + 1, 2);//
             orderTable.Borders.InsideLineStyle = orderTable.Borders.OutsideLineStyle
                 = WdLineStyle.wdLineStyleSingle;
             orderTable.Range.Cells.VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalCenter;
 
+
             Range cellRange;
             cellRange = orderTable.Cell(1, 1).Range;
             cellRange.Text = "Наименование продуктов";
-            cellRange = orderTable.Cell(1, countColmns + 2).Range;
+            cellRange = orderTable.Cell(1, 2).Range;
             cellRange.Text = "Количество продуктов";
-            for (int i = 0; i < 1; i++)
+
+            int x = 0;
+            int countDishes= 0;
+          // for (int j = 1; j <= countColmns; j++)
+          // {
+          //     if (countArray != null)
+          //     {
+          //         cellRange = orderTable.Cell(1, j + 1).Range;
+          //         cellRange.Text = orderArray[x].Name;
+          //         countDishes++;
+          //         x++;
+          //     }
+          // }
+
+
+
+            x = 0;
+            for (int j = 1; j <= indexProductRow; j++)
             {
-                int x = 0;
-                for (int j = 1; j <= countColmns; j++)
+                if (countArray != null)
                 {
-                    if (countArray != null)
+                    orderTable.Range.Cells.VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+                    if (Convert.ToDouble(SummWeigth[x, 1]) != 0)
                     {
-                        cellRange = orderTable.Cell(1, j + 1).Range;
-                        cellRange.Text = orderArray[x].Name;
-                        x++;
+                        if ((bool)SummWeigth[x, 2])
+                        {
+                            cellRange = orderTable.Cell(j + 1, 2).Range;
+                            cellRange.Text = Convert.ToDouble((double)SummWeigth[x, 1] / 1000).ToString() + " Кг";
+                        }
+                        else
+                        {
+                            cellRange = orderTable.Cell(j + 1, 2).Range;
+                            cellRange.Text = Convert.ToDouble((double)SummWeigth[x, 1]).ToString() + " Гр";
+                        }
+
                     }
+                    else
+                    j--;
+                    x++;
                 }
             }
 
-            for (int i = 0; i < 1; i++)
+            x = 0;
+            for (int j = 1; j <= indexProductRow; j++)
             {
-                int x = 0;
-                for (int j = 1; j <= ProductsRow.Length; j++)
+                if (countArray != null)
                 {
-                    if (countArray != null)
-                    {
-                        orderTable.Range.Cells.VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalCenter;
-                        //  cellRange = orderTable.Cell(1, j).Range.HorizontalInVertical = WdHorizontalInVerticalType.wdHorizontalInVerticalResizeLine;
-                        cellRange = orderTable.Cell(j+1, 1).Range;
-                        cellRange.Text = ProductsRow[x].Name;
-                        x++;
-                    }
+
+                    orderTable.Range.Cells.VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+                    //  cellRange = orderTable.Cell(1, j).Range.HorizontalInVertical = WdHorizontalInVerticalType.wdHorizontalInVerticalResizeLine;
+                    cellRange = orderTable.Cell(j + 1, 1).Range;
+                    cellRange.Text = ProductsRow[x].Name;
+                    x++;
                 }
             }
+           
 
             application.Visible = true;
             object filenameDox = $@"Формирования заказа {DateTime.Now.ToShortDateString()}.docx";
