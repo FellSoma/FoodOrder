@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrderFood"
         mc:Ignorable="d"
-        Title="Добовление" Height="650" Width="500"
+        Title="Добовление" Height="850" Width="500"
         MinHeight="650" MinWidth="500"
         WindowStartupLocation="CenterScreen"
         Background="#FFEAEAEA">
@@ -49,7 +49,7 @@
        Stretch="Uniform" >
 
         <Grid 
-        MinHeight="650"
+        MinHeight="850"
         MinWidth="510"
         Background="#FFEAEAEA">
             <Grid.ColumnDefinitions>

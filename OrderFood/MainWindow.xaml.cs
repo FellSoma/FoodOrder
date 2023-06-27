@@ -84,35 +84,6 @@ namespace OrderFood
             where dofm.id_Menu == menu.id
             select new { ds.Name }).Distinct();
             DataGridOrder.ItemsSource = query.ToList();
-            //DataGridList.AddRange((IEnumerable<string>)query.ToList());
-            //DataGridList = query.ToList();
-
-            //массив количества
-
-
-            //Заполни масив всеми блюдами,
-            // orderArray = new string[db.Dishes.LongCount(), 2];
-            // int j = 0;
-            // Entities.Dish authMenu = null;
-            //
-            // i = 0;
-            // j = 0;
-            //
-            // foreach (var item in query)
-            // {
-            //     using (Entities.FoodOrderEntities2 context = new Entities.FoodOrderEntities2())
-            //     {
-            //         authMenu = context.Dishes.Where(b => b.Name == item.Name.Trim()).FirstOrDefault();
-            //     }
-            //     if (authMenu != null)
-            //     {
-            //         orderArray[i, j] = authMenu.Name;
-            //         j = 1;
-            //         orderArray[i, j] = "0";
-            //         i++;
-            //         j = 0;
-            //     }
-            // }
         }
 
 
@@ -315,7 +286,7 @@ namespace OrderFood
 
         private void AddNewDish(object sender, RoutedEventArgs e)
         {
-            NewDish g = new NewDish();
+            AddMenu g = new AddMenu();
             g.ShowDialog();
 
         }

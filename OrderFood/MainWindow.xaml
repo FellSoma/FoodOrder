@@ -12,7 +12,7 @@
         MinHeight="420"
         Background="#FFEAEAEA" Width="1090">
     <Window.Resources>
-        
+
         <Style TargetType="TextBox"
             x:Key="Textboxes">
             <Setter Property="FontSize" Value="15"/>
@@ -46,9 +46,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-
     </Window.Resources>
     <Viewbox
         Stretch="Uniform">

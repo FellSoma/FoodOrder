@@ -1,0 +1,104 @@
+﻿<Window x:Class="OrderFood.EditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrderFood"
+        mc:Ignorable="d"
+        Title="Изменить блюдо" Background="#FFEAEAEA"
+        WindowStartupLocation="CenterScreen"
+        Height="250" Width="400">
+
+    <Window.Resources>
+
+        <Style TargetType="TextBox"
+            x:Key="Textboxes">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+
+                        <Grid x:Name="root" 
+                              Width="{TemplateBinding Property=Width}"
+                                    Height="{TemplateBinding Property=Height}"
+                              SnapsToDevicePixels="True">
+                            <Border x:Name="background" CornerRadius="6"
+                                    Background="White"
+                                    BorderBrush="#FFABADB3"
+                                    BorderThickness="2"
+                                    Width="{TemplateBinding Property=Width}"
+                                    Height="{TemplateBinding Property=Height}" />
+
+                            <ScrollViewer x:Name="PART_ContentHost"                                         
+                                          BorderThickness="1"
+                                          Background="Transparent"
+                                          Padding="{TemplateBinding Padding}"
+                                          IsTabStop="False"
+                                          Margin="6,5,0,6"
+                                          FontSize="15"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Viewbox
+        Stretch="Uniform">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="51*"/>
+                <ColumnDefinition Width="225*"/>
+                <ColumnDefinition Width="124*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="76*"/>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="117*"/>
+            </Grid.RowDefinitions>
+
+            <TextBox
+                Text="{Binding Name}"
+            Margin="10"
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="nameProduct"
+            Style="{StaticResource Textboxes}" Height="31"/>
+
+            <ComboBox
+                Grid.Row="1"
+                Grid.Column="2"
+                Width="100"
+                x:Name="cbUnit"
+                Height="25"
+                DisplayMemberPath="Name"
+                Margin="8"/>
+
+            <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="2"
+            Grid.Column="1">
+                <Button
+                Content="Назад"
+                Margin="10"
+                Width="100"
+                Height="30"
+                Click="Exit"
+                VerticalAlignment="Top"
+                Style="{StaticResource ExitButton}"/>
+                <Button
+                Content="Изменить"
+                Width="100"
+                Margin="0,10,10,10"
+                Height="30"
+                Click="Add"
+                VerticalAlignment="Top"
+                Style="{StaticResource NextButton}"/>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
+</Window>

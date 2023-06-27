@@ -176,7 +176,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrganizationsOfMenu_Menu">
-          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrganizationsOfMenu" Type="Self.OrganizationsOfMenu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Menu">
@@ -188,7 +190,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrganizationsOfMenu_Organizations">
-          <End Role="Organizations" Type="Self.Organizations" Multiplicity="1" />
+          <End Role="Organizations" Type="Self.Organizations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrganizationsOfMenu" Type="Self.OrganizationsOfMenu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Organizations">

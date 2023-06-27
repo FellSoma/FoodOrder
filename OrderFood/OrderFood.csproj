@@ -68,6 +68,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddMenu.xaml.cs">
+      <DependentUpon>AddMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewIngridient.xaml.cs">
+      <DependentUpon>AddNewIngridient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewMenuWindow.xaml.cs">
+      <DependentUpon>AddNewMenuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\ListEvents.cs" />
     <Compile Include="ConnectionWindow.cs" />
     <Compile Include="CustomMessageBox.xaml.cs">
@@ -75,6 +84,12 @@
     </Compile>
     <Compile Include="EditDishWindow.xaml.cs">
       <DependentUpon>EditDishWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditMenutWindow.xaml.cs">
+      <DependentUpon>EditMenutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditProductWindow.xaml.cs">
+      <DependentUpon>EditProductWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entities\dbModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -127,17 +142,43 @@
     <Compile Include="NewDish.xaml.cs">
       <DependentUpon>NewDish.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewMenuWindow.xaml.cs">
+      <DependentUpon>NewMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewProductWindow.xaml.cs">
+      <DependentUpon>NewProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
     <Compile Include="SiningWindow.xaml.cs">
       <DependentUpon>SiningWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewIngridient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditDishWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditMenutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +195,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewDish.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

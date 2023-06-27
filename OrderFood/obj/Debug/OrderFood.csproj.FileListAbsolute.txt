@@ -158,3 +158,17 @@ D:\Gits\FoodOrder\OrderFood\obj\Debug\OrderFood.pdb
 D:\Gits\FoodOrder\OrderFood\obj\Debug\CustomMessageBox.g.cs
 D:\Gits\FoodOrder\OrderFood\obj\Debug\CustomMessageBox.baml
 D:\Gits\FoodOrder\OrderFood\obj\Debug\OrderFood.csproj.ResolveComReference.cache
+D:\Gits\FoodOrder\OrderFood\obj\Debug\AddMenu.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\AddNewIngridient.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\AddMenu.baml
+D:\Gits\FoodOrder\OrderFood\obj\Debug\AddNewIngridient.baml
+D:\Gits\FoodOrder\OrderFood\obj\Debug\NewProductWindow.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\NewProductWindow.baml
+D:\Gits\FoodOrder\OrderFood\obj\Debug\EditProductWindow.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\EditProductWindow.baml
+D:\Gits\FoodOrder\OrderFood\obj\Debug\NewMenuWindow.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\EditMenutWindow.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\NewMenuWindow.baml
+D:\Gits\FoodOrder\OrderFood\obj\Debug\EditMenutWindow.baml
+D:\Gits\FoodOrder\OrderFood\obj\Debug\AddNewMenuWindow.g.cs
+D:\Gits\FoodOrder\OrderFood\obj\Debug\AddNewMenuWindow.baml

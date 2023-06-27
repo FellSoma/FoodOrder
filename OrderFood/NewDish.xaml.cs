@@ -45,9 +45,6 @@ namespace OrderFood
                     MenuPanelMidlle.Children.Add(checkBox);
                 else if (indexNameCheckBox > 12 && indexNameCheckBox < 18)
                     MenuPanelRight.Children.Add(checkBox);
-
-
-
             }
         }
 
@@ -65,7 +62,7 @@ namespace OrderFood
                 new CustomMessageBox("Внимание!", "Заполните массу ингридиентов \nУкажите все ингридиенты", "Ок", "Закрыть", 3, true).ShowDialog();
                 return;
             }
-            if (!int.TryParse(massTextBoxs[0].Text, out int result))
+            if (!double.TryParse(massTextBoxs[0].Text, out double result))
             {
                 new CustomMessageBox("Внимание!", "Масса  должна быть с плавающей запятой", "Ок", "Закрыть", 3, true).ShowDialog();
                 return;
@@ -74,13 +71,16 @@ namespace OrderFood
             {
                 for (int j = 1; j <= indexNameComboBoxs - 1; j++)
                 {
-                    if (massComboBoxs[i].Text == massComboBoxs[j].Text || massComboBoxs[j].Text == "" || massComboBoxs[i].Text == "")
+                    if (j != i)
                     {
-                        new CustomMessageBox("Внимание!", "Уберите повторяющиеся ингридиены", "Ок", "Закрыть", 3, true).ShowDialog();
-                        return;
+                        if (massComboBoxs[i].Text == massComboBoxs[j].Text || massComboBoxs[j].Text == "" || massComboBoxs[i].Text == "")
+                        {
+                            new CustomMessageBox("Внимание!", "Уберите повторяющиеся ингридиены", "Ок", "Закрыть", 3, true).ShowDialog();
+                            return;
+                        }
                     }
                     string word = massTextBoxs[i].Text;
-                    if (!int.TryParse(massTextBoxs[i].Text, out int result1))
+                    if (!double.TryParse(massTextBoxs[i].Text, out double result1))
                     {
                         new CustomMessageBox("Внимание!", "Масса  должна быть с плавающей запятой", "Ок", "Закрыть", 3, true).ShowDialog();
                         return;
@@ -206,7 +206,7 @@ namespace OrderFood
             switch (vibor2.Content)
             {
                 case "+":
-                    if (indexNameComboBoxs < 9)
+                    if (indexNameComboBoxs < 15)
                     {
 
                         ComboBox comboBox = new ComboBox();
@@ -256,18 +256,6 @@ namespace OrderFood
         }
         private void Count_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-
-            if ((e.Key == Key.D0) || (e.Key == Key.D1) || (e.Key == Key.D2) || (e.Key == Key.D3) || (e.Key == Key.D4)
-              || (e.Key == Key.D5) || (e.Key == Key.D6) || (e.Key == Key.D7) || (e.Key == Key.D8) || (e.Key == Key.D9)
-              || (e.Key == Key.Decimal))
-            {
-                // цифра
-                return;
-            }
-
-
-            // остальные символы запрещены
-            e.Handled = true;
         }
     }
 }

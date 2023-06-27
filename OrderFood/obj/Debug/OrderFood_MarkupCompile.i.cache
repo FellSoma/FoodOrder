@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Gits\FoodOrder\OrderFood\App.xaml
-9955501544
+161272358534
 2-1140971193
-27-1491494272
+341277772758
 22-311186114
-CustomMessageBox.xaml;EditDishWindow.xaml;MainWindow.xaml;NewDish.xaml;Order.xaml;SiningWindow.xaml;Themes\ExitButton.xaml;Themes\GrayButton.xaml;Themes\NextButton.xaml;
+AddMenu.xaml;AddNewIngridient.xaml;AddNewMenuWindow.xaml;CustomMessageBox.xaml;EditDishWindow.xaml;EditMenutWindow.xaml;EditProductWindow.xaml;MainWindow.xaml;NewDish.xaml;NewMenuWindow.xaml;NewProductWindow.xaml;Order.xaml;SiningWindow.xaml;Themes\ExitButton.xaml;Themes\GrayButton.xaml;Themes\NextButton.xaml;
 
 True
 

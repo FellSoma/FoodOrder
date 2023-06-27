@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:OrderFood"
         mc:Ignorable="d"
         Title="Редактирование"  
-         MinHeight="650" MinWidth="500"
+         MinHeight="850" MinWidth="500"
         Background="#FFEAEAEA"
-        Height="650" Width="500"
+        Height="850" Width="500"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
@@ -46,10 +46,11 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Viewbox>
+    <Viewbox
+        Stretch="Uniform">
         
     <Grid 
-        MinHeight="650"
+        MinHeight="850"
         MinWidth="510"
         Background="#FFEAEAEA">
         <Grid.ColumnDefinitions>
